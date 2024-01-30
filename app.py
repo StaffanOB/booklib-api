@@ -1,5 +1,4 @@
 import os
-import redis
 
 from flask import Flask, jsonify
 from flask_smorest import Api
@@ -27,13 +26,9 @@ def create_app(db_url=None):
     app = Flask(__name__)
     load_dotenv()
 
-    redis_connection = redis.from_url(
-        os.getenv("REDIS_URL")
-        )
 
-    app.queue = Queue("emails", connection=redis_connection)
     app.config["PROPAGATE_EXCEPTIONS"] = True
-    app.config["API_TITLE"] = "Stores Rest api"
+    app.config["API_TITLE"] = "Booklib API"
     app.config["API_VERSION"] = "v1"
     app.config["OPENAPI_VERSION"] = "3.0.3"
     app.config["OPENAPI_URL_PREFIX"] = "/"
@@ -115,8 +110,8 @@ def create_app(db_url=None):
             401,
         )
 
-    with app.app_context():
-        db.create_all()
+#    with app.app_context():
+#        db.create_all()
 
     api.register_blueprint(ItemBlueprint)
     api.register_blueprint(StoreBlueprint)

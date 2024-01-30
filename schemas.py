@@ -1,4 +1,6 @@
+from flask_smorest.spec.plugins import re
 from marshmallow import Schema, fields
+from sqlalchemy.orm import load_only
 
 
 class PlainItemSchema(Schema):
@@ -56,7 +58,20 @@ class UserSchema(Schema):
     id = fields.Int(dump_only=True)
     username = fields.Str(required=True)
     password = fields.Str(required=True, load_only=True)
+    surname = fields.Str(required=False)
+    firstname = fields.Str(required=False)
 
 
 class UserRegisterSchema(UserSchema):
     email = fields.Str(required=True)
+
+class PlainMemberSchema(Schema):
+    mid = fields.Int(dump_only=True)
+
+class MemberSchema(PlainMemberSchema):
+    uid = fields.Int(required=True, load_only=True)
+    user = fields.Nested(UserSchema(), dump_only=True)
+    surname = fields.Str(required=False)
+    firstname = fields.Str(required=False)
+
+

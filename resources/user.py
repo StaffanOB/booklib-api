@@ -1,4 +1,4 @@
-import requests, os
+import os
 from flask import current_app
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
@@ -12,7 +12,7 @@ from flask_jwt_extended import (
     get_jwt,
     jwt_required,
 )
-
+from rq import Queue
 from db import db
 from models import UserModel
 from schemas import UserSchema, UserRegisterSchema
@@ -53,13 +53,13 @@ class UserRegister(MethodView):
         user = UserModel(
             username=user_data["username"],
             email=user_data["email"],
-            password=pbkdf2_sha256.hash(user_data["password"])
+            password=pbkdf2_sha256.hash(user_data["password"]),
+            surname=user_data["surname"],
+            firstname=user_data["firstname"]
         )
         db.session.add(user)
         db.session.commit()
 
-        # Send register email
-        current_app.queue.enqueue(send_user_registration_email, user.email, user.username)
 
         return {"message": "User created successfully."}, 201
 

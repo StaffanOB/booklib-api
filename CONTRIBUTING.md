@@ -24,7 +24,7 @@ database.
 ## Setup database
 
 '''
-flask db upgrade
+flask db init
 '''
 
 ### Migrate new changes
