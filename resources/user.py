@@ -122,9 +122,7 @@ class UserLogout(MethodView):
 
 @blp.route("/user/<int:user_id>")
 class User(MethodView):
-    """
-    User route
-    """
+    @jwt_required()
     @blp.response(200, UserSchema)
     def get(self, user_id):
         """
