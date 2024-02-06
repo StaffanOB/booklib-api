@@ -1,4 +1,4 @@
-FLASK_APP_NAME = app
+	FLASK_APP_NAME = app
 IMAGE_NAME = booklib_api_img
 CONTAINER_NAME = BooklibAPI
 
