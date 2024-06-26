@@ -26,7 +26,6 @@ def create_app(db_url=None):
     app = Flask(__name__)
     load_dotenv()
 
-
     app.config["PROPAGATE_EXCEPTIONS"] = True
     app.config["API_TITLE"] = "Booklib API"
     app.config["API_VERSION"] = "v1"
@@ -60,7 +59,6 @@ def create_app(db_url=None):
             401,
         )
 
-
     @jwt.needs_fresh_token_loader
     def token_not_fresh_callback(jwt_header, jwt_payload):
         return (
@@ -73,7 +71,6 @@ def create_app(db_url=None):
             401,
         )
 
-
     @jwt.additional_claims_loader
     def add_claims_to_jwt(indentity):
         # TODO:  <18-10-23, sob> # add a db look up for the user
@@ -85,7 +82,8 @@ def create_app(db_url=None):
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
         return (
-            jsonify({"message": "The token has expired.", "error": "token_expired"}),
+            jsonify({"message": "The token has expired.",
+                    "error": "token_expired"}),
             401,
         )
 
