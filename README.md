@@ -23,6 +23,13 @@ The Audiobook Management System is a Flask application designed to manage audiob
 
 ## Getting Started
 
+## Docker compose
+
+To rebuild the application with docker compose, run the following command:
+```bash
+docker compose up --build --force-recreate --no-deps
+```
+
 ### Prerequisites
 
 - Docker
@@ -33,3 +40,26 @@ The Audiobook Management System is a Flask application designed to manage audiob
 
 1. Clone the repository:
 
+### Configure Environment Variables
+In the .env file, you can set the following environment variables:
+
+#### Inititate the database
+```bash
+flask db init
+```
+
+#### Migrate the database
+```bash
+flask db migrate
+```
+
+#### Upgrade the database
+```bash
+flask db upgrade
+```
+#### Run the application
+```bash	
+
+flask run
+```
+DATABASE_URL=postgresql://[user]:[password]@localhost:5432/[database_name]
