@@ -41,21 +41,22 @@ docker compose up --build --force-recreate --no-deps
 1. Clone the repository:
 
 ### Configure Environment Variables
-In the .env file, you can set the following environment variables:
+In the .env file, you can set the following environment variables in docker compose:
 
 #### Inititate the database
 ```bash
-flask db init
+docker compose exec api flask db init
 ```
 
 #### Migrate the database
 ```bash
 flask db migrate
+docker compose exec api flask db migrate
 ```
 
 #### Upgrade the database
 ```bash
-flask db upgrade
+docker compose exec api flask db upgrade
 ```
 #### Run the application
 ```bash	

@@ -14,6 +14,11 @@ class PlainStoreSchema(Schema):
     name = fields.Str(required=True)
 
 
+class PlainBookSchema(Schema):
+    id = fields.Int(dump_only=True)
+    title = fields.Str(required=True)
+
+
 class PlainTagSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
@@ -34,6 +39,15 @@ class ItemSchema(PlainItemSchema):
 class StoreSchema(PlainStoreSchema):
     items = fields.List(fields.Nested(PlainItemSchema()), dump_only=True)
     tags = fields.List(fields.Nested(PlainTagSchema()), dump_only=True)
+
+
+class BookSchema(PlainBookSchema):
+    author = fields.Str(required=True)
+
+
+class BookUpdateSchema(Schema):
+    title = fields.Str()
+    author = fields.Str()
 
 
 class TagSchema(PlainTagSchema):
@@ -65,13 +79,13 @@ class UserSchema(Schema):
 class UserRegisterSchema(UserSchema):
     email = fields.Str(required=True)
 
+
 class PlainMemberSchema(Schema):
     mid = fields.Int(dump_only=True)
+
 
 class MemberSchema(PlainMemberSchema):
     uid = fields.Int(required=True, load_only=True)
     user = fields.Nested(UserSchema(), dump_only=True)
     surname = fields.Str(required=False)
     firstname = fields.Str(required=False)
-
-

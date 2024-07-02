@@ -1,6 +1,6 @@
 FLASK_APP_NAME = app
 IMAGE_NAME = booklib_api_img
-CONTAINER_NAME = BooklibAPI
+CONTAINER_NAME = booklib-api
 
 DB_CONTAINER_NAME = BooklibDB
 DB_NAME = booklibdb
@@ -34,12 +34,11 @@ deploy:
 
 stop:
 	# Stop the Docker containers
-	docker stop $(CONTAINER_NAME) 
-	#$(DB_CONTAINER_NAME)
+	docker stop $(CONTAINER_NAME) $(DB_CONTAINER_NAME)
 
 clean:
 	# Remove the Docker containers
-	docker rm $(CONTAINER_NAME) #$(DB_CONTAINER_NAME)
+	docker rm $(CONTAINER_NAME) $(DB_CONTAINER_NAME)
 
 	# Remove the Docker image
 	docker rmi $(IMAGE_NAME)
