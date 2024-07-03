@@ -21,9 +21,7 @@ from blocklist import BLOCKLIST
 
 from resources.book import blp as BookBlueprint
 from resources.author import blp as AuthorBlueprint
-from resources.item import blp as ItemBlueprint
-from resources.store import blp as StoreBlueprint
-from resources.tag import blp as TagBlueprint
+from resources.category import blp as CategoryBlueprint
 from resources.user import blp as UserBlueprint
 
 
@@ -122,9 +120,7 @@ def create_app(db_url=None):
 
     api.register_blueprint(BookBlueprint)
     api.register_blueprint(AuthorBlueprint)
-    api.register_blueprint(ItemBlueprint)
-    api.register_blueprint(StoreBlueprint)
-    api.register_blueprint(TagBlueprint)
+    api.register_blueprint(CategoryBlueprint)
     api.register_blueprint(UserBlueprint)
 
     return app

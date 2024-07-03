@@ -1,7 +1,8 @@
-from models.user import UserModel
-from models.item import ItemModel
-from models.tag import TagModel
-from models.store import StoreModel
-from models.item_tags import ItemTags
-from models.book import BookModel
-from models.author import AuthorModel
+from .user import UserModel
+from .book import BookModel
+from .author import AuthorModel
+from .category import CategoryModel
+from .bookcategory import BookCategoryModel
+
+__all__ = ["AuthorModel", "BookModel",
+           "CategoryModel", "BookCategoryModel", "UserModel"]

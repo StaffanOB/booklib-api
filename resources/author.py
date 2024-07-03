@@ -8,7 +8,7 @@ from db import db
 from models import AuthorModel
 from schemas import AuthorSchema, AuthorUpdateSchema
 
-blp = Blueprint("authors", __name__, description="Operations on stores")
+blp = Blueprint("authors", __name__, description="Operations on authors")
 
 
 @blp.route("/author/<string:author_id>")

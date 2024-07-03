@@ -9,3 +9,4 @@ class BookModel(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey(
         "authors.id"), nullable=False)
     author = db.relationship("AuthorModel", back_populates="books")
+    categories = db.relationship("BookCategoryModel", back_populates="book")

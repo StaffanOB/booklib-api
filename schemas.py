@@ -8,14 +8,9 @@ class PlainBookSchema(Schema):
     title = fields.Str(required=True)
 
 
-class BookSchema(PlainBookSchema):
-    author_id = fields.Int(required=True, load_only=True)
-    author = fields.Nested("AuthorSchema", dump_only=True)
-
-
-class BookUpdateSchema(Schema):
-    title = fields.Str()
-    author_id = fields.Int()
+class PlainCategorySchema(Schema):
+    id = fields.Int(dump_only=True)
+    name = fields.Str(required=True)
 
 
 class PlainAuthorSchema(Schema):
@@ -23,11 +18,32 @@ class PlainAuthorSchema(Schema):
     name = fields.Str(required=True)
 
 
+class BookSchema(PlainBookSchema):
+    author_id = fields.Int(required=True, load_only=True)
+    author = fields.Nested("AuthorSchema", dump_only=True)
+    categories = fields.List(fields.Nested(
+        PlainCategorySchema), dump_only=True)
+    primary_category = fields.Nested(PlainCategorySchema, dump_only=True)
+
+
+class BookUpdateSchema(Schema):
+    title = fields.Str()
+    author_id = fields.Int()
+
+
 class AuthorSchema(PlainAuthorSchema):
     books = fields.List(fields.Nested(PlainBookSchema), dump_only=True)
 
 
 class AuthorUpdateSchema(Schema):
+    name = fields.Str()
+
+
+class CategorySchema(PlainCategorySchema):
+    books = fields.List(fields.Nested(PlainBookSchema), dump_only=True)
+
+
+class CategoryUpdateSchema(Schema):
     name = fields.Str()
 
 

@@ -64,3 +64,14 @@ docker compose exec api flask db upgrade
 flask run
 ```
 DATABASE_URL=postgresql://[user]:[password]@localhost:5432/[database_name]
+
+## Run tests
+Unite tests are written using pytest. Use pytest-watch to run tests
+automatically when a file changes.
+
+To run the tests, run the following command:
+```bash
+pytest tests/
+or
+ptw tests/current_test.py
+```
