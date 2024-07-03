@@ -1,3 +1,10 @@
+'''
+Booklib API - Is the backdend of the Booklib project. It is a RESTful API that
+provides endpoints for managing audio books. The API is built with Flask and
+uses Flask-Restful for creating the endpoints. The API is secured with JWT
+tokens and uses SQLAlchemy for the ORM. The API is also documented with
+Flask-Smorest and uses Flask-Migrate for database migrations.
+'''
 import os
 
 from flask import Flask, jsonify
@@ -12,9 +19,10 @@ from db import db
 import models
 from blocklist import BLOCKLIST
 
+from resources.book import blp as BookBlueprint
+from resources.author import blp as AuthorBlueprint
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
-from resources.book import blp as BookBlueprint
 from resources.tag import blp as TagBlueprint
 from resources.user import blp as UserBlueprint
 
@@ -112,9 +120,10 @@ def create_app(db_url=None):
 #    with app.app_context():
 #        db.create_all()
 
+    api.register_blueprint(BookBlueprint)
+    api.register_blueprint(AuthorBlueprint)
     api.register_blueprint(ItemBlueprint)
     api.register_blueprint(StoreBlueprint)
-    api.register_blueprint(BookBlueprint)
     api.register_blueprint(TagBlueprint)
     api.register_blueprint(UserBlueprint)
 

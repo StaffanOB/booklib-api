@@ -3,6 +3,34 @@ from marshmallow import Schema, fields
 from sqlalchemy.orm import load_only
 
 
+class PlainBookSchema(Schema):
+    id = fields.Int(dump_only=True)
+    title = fields.Str(required=True)
+
+
+class BookSchema(PlainBookSchema):
+    author_id = fields.Int(required=True, load_only=True)
+    author = fields.Nested("AuthorSchema", dump_only=True)
+
+
+class BookUpdateSchema(Schema):
+    title = fields.Str()
+    author_id = fields.Int()
+
+
+class PlainAuthorSchema(Schema):
+    id = fields.Int(dump_only=True)
+    name = fields.Str(required=True)
+
+
+class AuthorSchema(PlainAuthorSchema):
+    books = fields.List(fields.Nested(PlainBookSchema), dump_only=True)
+
+
+class AuthorUpdateSchema(Schema):
+    name = fields.Str()
+
+
 class PlainItemSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
@@ -12,11 +40,6 @@ class PlainItemSchema(Schema):
 class PlainStoreSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
-
-
-class PlainBookSchema(Schema):
-    id = fields.Int(dump_only=True)
-    title = fields.Str(required=True)
 
 
 class PlainTagSchema(Schema):
@@ -39,15 +62,6 @@ class ItemSchema(PlainItemSchema):
 class StoreSchema(PlainStoreSchema):
     items = fields.List(fields.Nested(PlainItemSchema()), dump_only=True)
     tags = fields.List(fields.Nested(PlainTagSchema()), dump_only=True)
-
-
-class BookSchema(PlainBookSchema):
-    author = fields.Str(required=True)
-
-
-class BookUpdateSchema(Schema):
-    title = fields.Str()
-    author = fields.Str()
 
 
 class TagSchema(PlainTagSchema):

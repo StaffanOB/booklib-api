@@ -1,6 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import abort, Blueprint
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
+from flask_jwt_extended import jwt_required, get_jwt
 
 from db import db
 from models import BookModel
@@ -14,9 +15,26 @@ class Book(MethodView):
     @blp.response(200, BookSchema)
     def get(self, book_id):
         book = BookModel.query.get_or_404(book_id)
+        return book
+
+    @jwt_required()
+    @blp.arguments(BookUpdateSchema)
+    @blp.response(200, BookSchema)
+    def put(self, book_data, book_id):
+        book = BookModel.query.get(book_id)
+
+        if book:
+            book.title = book_data["title"]
+            book.author = book_data["author_id"]
+        else:
+            book = BookModel(id=book_id, **book_data)
+
+        db.session.add(book)
+        db.session.commit()
 
         return book
 
+    @jwt_required()
     def delete(self, book_id):
         book = BookModel.query.get_or_404(book_id)
         db.session.delete(book)
@@ -25,12 +43,20 @@ class Book(MethodView):
         return {"message": "book deleted"}
 
 
+@blp.route("/books")
+class BookInfo(MethodView):
+    @blp.response(200, BookSchema(many=True))
+    def get(self):
+        return BookModel.query.all()
+
+
 @blp.route("/book")
 class BookList(MethodView):
     @blp.response(200, BookSchema(many=True))
     def get(self):
         return BookModel.query.all()
 
+    @jwt_required()
     @blp.arguments(BookSchema)
     @blp.response(201, BookSchema)
     def post(self, book_data):
