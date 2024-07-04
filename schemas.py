@@ -8,35 +8,33 @@ class PlainBookSchema(Schema):
     title = fields.Str(required=True)
 
 
-class PlainCategorySchema(Schema):
-    id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
+class BookSchema(PlainBookSchema):
+    author_ids = fields.List(fields.Int(), load_only=True)
+    authors = fields.List(fields.Nested("PlainAuthorSchema"), dump_only=True)
+    category_ids = fields.List(fields.Int(), load_only=True)
+    categories = fields.List(fields.Nested("PlainCategorySchema"), dump_only=True)
+
+
+class BookUpdateSchema(Schema):
+    title = fields.Str()
+    author_id = fields.Int()
+    category_ids = fields.List(fields.Int(), load_only=True)
 
 
 class PlainAuthorSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
 
-
-class BookSchema(PlainBookSchema):
-    author_id = fields.Int(required=True, load_only=True)
-    author = fields.Nested("AuthorSchema", dump_only=True)
-    categories = fields.List(fields.Nested(
-        PlainCategorySchema), dump_only=True)
-    primary_category = fields.Nested(PlainCategorySchema, dump_only=True)
-
-
-class BookUpdateSchema(Schema):
-    title = fields.Str()
-    author_id = fields.Int()
-
-
 class AuthorSchema(PlainAuthorSchema):
     books = fields.List(fields.Nested(PlainBookSchema), dump_only=True)
 
-
 class AuthorUpdateSchema(Schema):
     name = fields.Str()
+
+
+class PlainCategorySchema(Schema):
+    id = fields.Int(dump_only=True)
+    name = fields.Str(required=True)
 
 
 class CategorySchema(PlainCategorySchema):
@@ -45,51 +43,6 @@ class CategorySchema(PlainCategorySchema):
 
 class CategoryUpdateSchema(Schema):
     name = fields.Str()
-
-
-class PlainItemSchema(Schema):
-    id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
-    price = fields.Float(required=True)
-
-
-class PlainStoreSchema(Schema):
-    id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
-
-
-class PlainTagSchema(Schema):
-    id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
-
-
-class ItemUpdateSchema(Schema):
-    name = fields.Str()
-    price = fields.Float()
-    store_id = fields.Int()
-
-
-class ItemSchema(PlainItemSchema):
-    store_id = fields.Int(required=True, load_only=True)
-    store = fields.Nested(PlainStoreSchema(), dump_only=True)
-    tags = fields.Nested(PlainTagSchema(), dump_only=True)
-
-
-class StoreSchema(PlainStoreSchema):
-    items = fields.List(fields.Nested(PlainItemSchema()), dump_only=True)
-    tags = fields.List(fields.Nested(PlainTagSchema()), dump_only=True)
-
-
-class TagSchema(PlainTagSchema):
-    store_id = fields.Int(load_only=True)
-    store = fields.Nested(PlainStoreSchema(), dump_only=True)
-    items = fields.Nested(PlainItemSchema(), dump_only=True)
-
-
-class TagAndItemSchema(Schema):
-    message = fields.Str()
-    item = fields.Nested(ItemSchema)
-    tag = fields.Nested(TagSchema)
 
 
 class UserSchema(Schema):

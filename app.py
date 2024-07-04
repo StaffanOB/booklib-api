@@ -21,7 +21,7 @@ from blocklist import BLOCKLIST
 
 from resources.book import blp as BookBlueprint
 from resources.author import blp as AuthorBlueprint
-from resources.category import blp as CategoryBlueprint
+from resources.category_list import blp as CategoryBlueprint
 from resources.user import blp as UserBlueprint
 
 

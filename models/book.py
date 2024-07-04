@@ -1,12 +1,11 @@
 from db import db
+from associations import book_author, book_category
 
 
 class BookModel(db.Model):
-    __tablename__ = "books"
+    __tablename__ = 'books'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), nullable=False)
-    author_id = db.Column(db.Integer, db.ForeignKey(
-        "authors.id"), nullable=False)
-    author = db.relationship("AuthorModel", back_populates="books")
-    categories = db.relationship("BookCategoryModel", back_populates="book")
+    authors = db.relationship('AuthorModel', secondary=book_author, back_populates='books')
+    categories = db.relationship('CategoryModel', secondary=book_category, back_populates='books')

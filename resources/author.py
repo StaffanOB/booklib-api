@@ -11,11 +11,51 @@ from schemas import AuthorSchema, AuthorUpdateSchema
 blp = Blueprint("authors", __name__, description="Operations on authors")
 
 
+@blp.route("/authors")
+class AuthorInfo(MethodView):
+    @blp.response(200, AuthorSchema(many=True))
+#    def get(self):
+#        return AuthorModel.query.all()
+    def get(self):
+
+        results = AuthorModel.query.all()
+        return results
+
+    # @jwt_required(fresh=True)
+    @blp.arguments(AuthorSchema)
+    @blp.response(201, AuthorSchema)
+    def post(self, author_data):
+        author = AuthorModel(**author_data)
+
+        try:
+            db.session.add(author)
+            db.session.commit()
+        except SQLAlchemyError:
+            abort(500, message="An error occured while inserting in to authors")
+
+        return author
+
+
 @blp.route("/author/<string:author_id>")
 class Author(MethodView):
     @blp.response(200, AuthorSchema)
     def get(self, author_id):
-        author = AuthorModel.query.get_or_404(author_id)
+        return AuthorModel.query.get_or_404(author_id)
+
+    @jwt_required()
+    @blp.arguments(AuthorUpdateSchema)
+    @blp.response(200, AuthorSchema)
+    def put(self, author_data, author_id):
+        author = AuthorModel.query.get(author_id)
+
+        if author:
+            author.name = author_data["name"]
+        else:
+            author = AuthorModel(id=author_id, **author_data)
+
+        db.session.add(author)
+        db.session.commit()
+
         return author
 
     @jwt_required()
@@ -30,47 +70,4 @@ class Author(MethodView):
 
         return {"message": "Author deleted"}
 
-    @jwt_required()
-    @blp.arguments(AuthorUpdateSchema)
-    @blp.response(200, AuthorSchema)
-    def put(self, author_data, author_id):
-        author = AuthorModel.query.get(author_id)
 
-        if author:
-            author.price = author_data["price"]
-            author.name = author_data["name"]
-        else:
-            author = AuthorModel(id=author_id, **author_data)
-
-        db.session.add(author)
-        db.session.commit()
-
-        return author
-
-
-@blp.route("/authors")
-class AuthorInfo(MethodView):
-    @blp.response(200, AuthorSchema(many=True))
-#    def get(self):
-#        return AuthorModel.query.all()
-    def get(self):
-
-        results = AuthorModel.query.all()
-        return results
-
-
-@blp.route("/author")
-class AuthorList(MethodView):
-    # @jwt_required(fresh=True)
-    @blp.arguments(AuthorSchema)
-    @blp.response(201, AuthorSchema)
-    def post(self, author_data):
-        author = AuthorModel(**author_data)
-
-        try:
-            db.session.add(author)
-            db.session.commit()
-        except SQLAlchemyError:
-            abort(500, message="An error occured while inserting in to authors")
-
-        return author

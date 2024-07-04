@@ -18,7 +18,7 @@ run:
 	# Run the Docker containers
 	#docker run -d --name $(DB_CONTAINER_NAME) -e POSTGRES_DB=$(DB_NAME) -e POSTGRES_USER=$(DB_USER) -e POSTGRES_PASSWORD=$(DB_PASSWORD) 
 #	docker run -d --name $(DB_CONTAINER_NAME) -p 5432:5432 -e POSTGRES_PASSWORD=$(DB_PASSWORD) -e postgres_db=$(DB_NAME) -e postgres_user=$(DB_USER) -e postgres_password=$(DB_PASSWORD) postgres:14
-	docker run -d --name $(CONTAINER_NAME) -dp 80:5000 -w /app -v "$(CURDIR):/app" $(IMAGE_NAME) 
+	docker run -d --name $(CONTAINER_NAME) -dp 5000:5000 -w /app -v "$(CURDIR):/app" $(IMAGE_NAME)
 	#docker run -d --name $(CONTAINER_NAME) -dp 80:5000 -w /app -v "$(CURDIR):/app" --link $(DB_CONTAINER_NAME):postgres $(IMAGE_NAME) 
 
 start:
@@ -34,11 +34,13 @@ deploy:
 
 stop:
 	# Stop the Docker containers
-	docker stop $(CONTAINER_NAME) $(DB_CONTAINER_NAME)
+	docker stop $(CONTAINER_NAME)
+#$(DB_CONTAINER_NAME)
 
 clean:
 	# Remove the Docker containers
-	docker rm $(CONTAINER_NAME) $(DB_CONTAINER_NAME)
+	docker rm $(CONTAINER_NAME)
+	#$(DB_CONTAINER_NAME)
 
 	# Remove the Docker image
 	docker rmi $(IMAGE_NAME)

@@ -1,8 +1,6 @@
-from .user import UserModel
-from .book import BookModel
 from .author import AuthorModel
+from .book import BookModel
 from .category import CategoryModel
-from .bookcategory import BookCategoryModel
+from .user import UserModel
 
-__all__ = ["AuthorModel", "BookModel",
-           "CategoryModel", "BookCategoryModel", "UserModel"]
+__all__ = ["UserModel", "AuthorModel", "BookModel", "CategoryModel"]

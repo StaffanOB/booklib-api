@@ -1,12 +1,10 @@
 from db import db
-'''
-Define a category with a unique name for the categories table in the database.
-'''
+from associations import book_category
 
 
 class CategoryModel(db.Model):
     __tablename__ = 'categories'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False, unique=True)
-    books = db.relationship('BookCategoryModel', back_populates='category')
+    name = db.Column(db.String(80), unique=True, nullable=False)
+    books = db.relationship('BookModel', secondary=book_category, back_populates='categories')
