@@ -23,7 +23,7 @@ from resources.book import blp as BookBlueprint
 from resources.author import blp as AuthorBlueprint
 from resources.category_list import blp as CategoryBlueprint
 from resources.user import blp as UserBlueprint
-
+from resources.book_categories import blp as BookCategoriesBlueprint
 
 def create_app(db_url=None):
     """
@@ -122,6 +122,7 @@ def create_app(db_url=None):
     api.register_blueprint(AuthorBlueprint)
     api.register_blueprint(CategoryBlueprint)
     api.register_blueprint(UserBlueprint)
+    api.register_blueprint(BookCategoriesBlueprint)
 
     return app
 

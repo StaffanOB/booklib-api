@@ -1,77 +1,23 @@
-# Booklib API
+# Booklib API Works
+The Booklib API is a backend service for managing audio books. It is built using the Flask framework and offers a set of RESTful endpoints for managing books, authors, categories, and users. Here’s a breakdown of the key components:
 
+## Flask Application Factory:
+* The create_app function sets up and configures the Flask application. This approach is known as the application factory pattern, which allows for easier testing and configuration.
 
-The Audiobook Management System is a Flask application designed to manage audiobooks, inspired by the functionality of goodreads.com. It allows users to keep track of their audiobook collection, rate audiobooks, and discover new ones.
+## Environment Configuration:
+* The application loads environment variables using dotenv, which allows configuration values to be set outside of the codebase.
 
-## Features
+## Database:
+* SQLAlchemy is used as the ORM (Object-Relational Mapper) to interact with the database.
+* Flask-Migrate is integrated for handling database migrations.
 
-- User Registration and Authentication
-- Audiobook CRUD Operations (Create, Read, Update, Delete)
-- User Ratings and Reviews
-- Discover New Audiobooks
-- Dockerized Application with PostgreSQL Database
+## JWT Authentication:
+* The application uses Flask-JWT-Extended for handling JWT authentication, including token creation, validation, and revocation.
+* Custom JWT callback functions are defined for various scenarios like token expiration, invalid tokens, and token revocation.
 
-## Technologies Used
+## Blueprints:
+* The application is modularized using Flask blueprints. Each resource (books, authors, categories, users) has its own blueprint, which is registered with the main API object.
+* This modular approach helps in organizing the codebase and making it more maintainable.
 
-- Flask: A micro web framework for Python
-- SQLAlchemy: SQL toolkit and Object-Relational Mapping (ORM) library
-- Docker: Containerization platform
-- PostgreSQL: Relational database management system
-- Flask-Security: Flask extension for handling security-related tasks
-- Flask-Migrate: Flask extension for database migrations
-- Other dependencies: See `requirements.txt`
-
-## Getting Started
-
-## Docker compose
-
-To rebuild the application with docker compose, run the following command:
-```bash
-docker compose up --build --force-recreate --no-deps
-```
-
-### Prerequisites
-
-- Docker
-- Docker Compose
-- Python (for development)
-
-### Setup
-
-1. Clone the repository:
-
-### Configure Environment Variables
-In the .env file, you can set the following environment variables in docker compose:
-
-#### Inititate the database
-```bash
-docker compose exec api flask db init
-```
-
-#### Migrate the database
-```bash
-flask db migrate
-docker compose exec api flask db migrate
-```
-
-#### Upgrade the database
-```bash
-docker compose exec api flask db upgrade
-```
-#### Run the application
-```bash	
-
-flask run
-```
-DATABASE_URL=postgresql://[user]:[password]@localhost:5432/[database_name]
-
-## Run tests
-Unite tests are written using pytest. Use pytest-watch to run tests
-automatically when a file changes.
-
-To run the tests, run the following command:
-```bash
-pytest tests/
-or
-ptw tests/current_test.py
-```
+## Summary
+The Booklib API is structured to be modular and maintainable, leveraging Flask blueprints, SQLAlchemy for ORM, Flask-Migrate for migrations, and Flask-JWT-Extended for authentication. By following the steps outlined above, you can add new endpoints that interact with the database seamlessly, ensuring the application remains organized and scalable.

@@ -5,7 +5,9 @@ from models import CategoryModel
 from schemas import CategorySchema, CategoryUpdateSchema
 from sqlalchemy.exc import SQLAlchemyError
 
-blp = Blueprint("Categories", "categories", description="Operations on categories")
+blp = Blueprint("Categories", "categories",
+                description="Operations on categories")
+
 
 @blp.route("/categories")
 class CategoryList(MethodView):
@@ -21,11 +23,14 @@ class CategoryList(MethodView):
             db.session.add(category)
             db.session.commit()
         except SQLAlchemyError:
-            abort(500, message="An error occurred while inserting the category.")
+            abort(500,
+                  message="An error occurred while inserting the category.")
         return category
+
 
 @blp.route("/category/<int:category_id>")
 class Category(MethodView):
+    ''' Operations on a single category '''
     @blp.response(200, CategorySchema)
     def get(self, category_id):
         return CategoryModel.query.get_or_404(category_id)

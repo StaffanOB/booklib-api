@@ -1,6 +1,5 @@
-# /root/tests/conftest.py
-
 import pytest
+from app import create_app
 from flask import Flask
 from db import db as _db
 from models import AuthorModel, BookModel, CategoryModel
@@ -14,7 +13,6 @@ def app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['API_TITLE'] = 'Test API'
-    app.config['API_VERSION'] = 'v1'
     app.config['API_VERSION'] = 'v1'
     app.config['OPENAPI_VERSION'] = '3.0.3'
     app.config['OPENAPI_URL_PREFIX'] = '/'
@@ -35,32 +33,51 @@ def app():
     with app.app_context():
         _db.drop_all()
 
+
 @pytest.fixture(scope='module')
 def db(app):
     return _db
 
-@pytest.fixture
-def client(app):
-    return app.test_client()
 
-@pytest.fixture
-def init_database(db):
-    # Clear existing data to avoid duplicates
-    db.session.query(BookModel).delete()
-    db.session.query(CategoryModel).delete()
-    db.session.query(AuthorModel).delete()
+@pytest.fixture(scope='module')
+def test_client(app):
+    flask_app = create_app("sqlite:///:memory:")
 
-    # Add initial test data with unique names
-    author = AuthorModel(name="Test Author")
-    book = BookModel(title="Test Book", author=author)
-    category = CategoryModel(name="Test Category")
+    with flask_app.test_client() as client:
+        with flask_app.app_context():
+            _db.create_all()
+            yield client
+            _db.drop_all()
 
-    db.session.add(author)
-    db.session.add(book)
-    db.session.add(category)
-    db.session.commit()
+# @pytest.fixture
+# def client(app):
+#    return app.test_client()
 
 
-    yield db
-    db.session.rollback()
-    db.session.close()
+@pytest.fixture(scope='module')
+def new_author():
+    author = AuthorModel(name="Author Name")
+    return author
+
+
+@pytest.fixture(scope='module')
+def new_category():
+    category = CategoryModel(name="Category Name")
+    return category
+
+
+@pytest.fixture(scope='module')
+def new_book(new_author, new_category):
+    book = BookModel(title="Book Title")
+    return book
+
+
+@pytest.fixture(scope='module')
+def init_database(new_author, new_category, new_book):
+    # Create initial test data
+    _db.session.add(new_author)
+    _db.session.add(new_category)
+    _db.session.add(new_book)
+    _db.session.commit()
+    yield _db
+    _db.remove()

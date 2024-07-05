@@ -12,7 +12,8 @@ class BookSchema(PlainBookSchema):
     author_ids = fields.List(fields.Int(), load_only=True)
     authors = fields.List(fields.Nested("PlainAuthorSchema"), dump_only=True)
     category_ids = fields.List(fields.Int(), load_only=True)
-    categories = fields.List(fields.Nested("PlainCategorySchema"), dump_only=True)
+    categories = fields.List(fields.Nested(
+        "PlainCategorySchema"), dump_only=True)
 
 
 class BookUpdateSchema(Schema):
@@ -25,8 +26,10 @@ class PlainAuthorSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
 
+
 class AuthorSchema(PlainAuthorSchema):
     books = fields.List(fields.Nested(PlainBookSchema), dump_only=True)
+
 
 class AuthorUpdateSchema(Schema):
     name = fields.Str()
@@ -43,6 +46,11 @@ class CategorySchema(PlainCategorySchema):
 
 class CategoryUpdateSchema(Schema):
     name = fields.Str()
+
+
+class BookCategorySchema(Schema):
+    category_id = fields.Int(required=True)
+
 
 
 class UserSchema(Schema):

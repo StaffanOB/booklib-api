@@ -1,11 +1,13 @@
+
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from db import db
 from models import BookModel, AuthorModel, CategoryModel
-from schemas import BookSchema, BookUpdateSchema
+from schemas import BookSchema, BookUpdateSchema, CategorySchema, BookCategorySchema
 from sqlalchemy.exc import SQLAlchemyError
 
 blp = Blueprint("Books", "books", description="Operations on books")
+
 
 @blp.route("/books")
 class BookList(MethodView):
@@ -54,3 +56,5 @@ class Book(MethodView):
         db.session.delete(book)
         db.session.commit()
         return {"message": "Book deleted"}
+
+

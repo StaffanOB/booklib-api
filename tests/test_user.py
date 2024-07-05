@@ -10,7 +10,7 @@ def app():
     return app
 
 @pytest.fixture
-def client(app):
+def client(app, app_context):
     with app.test_client() as client:
         with app.app_context():
             db.create_all()
