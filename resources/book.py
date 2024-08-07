@@ -20,15 +20,18 @@ class BookList(MethodView):
     def post(self, book_data):
         book = BookModel(title=book_data["title"])
         if 'author_ids' in book_data:
-            book.authors = AuthorModel.query.filter(AuthorModel.id.in_(book_data['author_ids'])).all()
+            book.authors = AuthorModel.query.filter(
+                AuthorModel.id.in_(book_data['author_ids'])).all()
         if 'category_ids' in book_data:
-            book.categories = CategoryModel.query.filter(CategoryModel.id.in_(book_data['category_ids'])).all()
+            book.categories = CategoryModel.query.filter(
+                CategoryModel.id.in_(book_data['category_ids'])).all()
         try:
             db.session.add(book)
             db.session.commit()
         except SQLAlchemyError:
             abort(500, message="An error occurred while inserting the book.")
         return book
+
 
 @blp.route("/book/<int:book_id>")
 class Book(MethodView):
@@ -44,9 +47,11 @@ class Book(MethodView):
             if "title" in book_data:
                 book.title = book_data["title"]
             if "author_ids" in book_data:
-                book.authors = AuthorModel.query.filter(AuthorModel.id.in_(book_data["author_ids"])).all()
+                book.authors = AuthorModel.query.filter(
+                    AuthorModel.id.in_(book_data["author_ids"])).all()
             if "category_ids" in book_data:
-                book.categories = CategoryModel.query.filter(CategoryModel.id.in_(book_data["category_ids"])).all()
+                book.categories = CategoryModel.query.filter(
+                    CategoryModel.id.in_(book_data["category_ids"])).all()
             db.session.commit()
         return book
 
@@ -56,5 +61,3 @@ class Book(MethodView):
         db.session.delete(book)
         db.session.commit()
         return {"message": "Book deleted"}
-
-

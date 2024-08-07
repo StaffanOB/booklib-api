@@ -7,10 +7,16 @@ book_author = db.Table('book_author',
                            'authors.id'), primary_key=True)
                        )
 
+book_categories = db.Table('category',
+                          db.column('book_id', db.Integer, db.ForeignKey(
+                              'books.id'), primary_key=True),
+                          db.column('category_id', db.Integer, db.ForeignKey(
+                              'categories.id'), primary_key=True)
+                          )
+
 book_category = db.Table('book_category',
                          db.Column('book_id', db.Integer, db.ForeignKey(
                              'books.id'), primary_key=True),
                          db.Column('category_id', db.Integer, db.ForeignKey(
                              'categories.id'), primary_key=True)
                          )
-

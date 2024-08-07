@@ -18,3 +18,18 @@ def client(app):
         with app.app_context():
             _db.create_all()
         yield client
+
+
+@pytest.fixture
+def new_author():
+    return {"name": "Author Name"}
+
+
+@pytest.fixture
+def new_category():
+    return {"name": "Category Name"}
+
+
+@pytest.fixture
+def new_book():
+    return {"title": "Book Title", "category_ids": [], "author_ids": None}

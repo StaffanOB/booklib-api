@@ -7,5 +7,5 @@ class BookModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), nullable=False)
-    authors = db.relationship('AuthorModel', secondary=book_author, back_populates='books')
-    categories = db.relationship('CategoryModel', secondary=book_category, back_populates='books')
+    authors = db.relationship(
+        'AuthorModel', secondary=book_author, back_populates='books')
