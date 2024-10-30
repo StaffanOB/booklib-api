@@ -2,7 +2,7 @@
     port_server=5000
     port_ex=80
     image_name=booklib_api_img
-    container_name=BooklibAPI 
+    container_name=booklib-api
 
 
     #docker build -t flask-smorest-api .

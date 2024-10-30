@@ -9,3 +9,5 @@ class BookModel(db.Model):
     title = db.Column(db.String(80), nullable=False)
     authors = db.relationship(
         'AuthorModel', secondary=book_author, back_populates='books')
+    categories = db.relationship(
+        'CategoryModel', secondary=book_category, back_populates='books')

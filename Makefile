@@ -25,7 +25,7 @@ start:
     # Start the Flask application
 	#docker start $(DB_CONTAINER_NAME) 
 	docker start $(CONTAINER_NAME) 
-	docker exec -it $(CONTAINER_NAME) flask run --host=0.0.0.0
+#	docker exec -it $(CONTAINER_NAME) flask run --host=0.0.0.0
 
 deploy:
 	# Deploy and start the application

@@ -153,7 +153,7 @@ docker compose exec api flask db migrate
 ```bash
 docker compose exec api flask db upgrade
 ```
-#### Run the application
+#### Run the application locally in development mode
 ```bash	
 
 flask run
