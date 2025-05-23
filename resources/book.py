@@ -3,6 +3,7 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from db import db
 from models import BookModel, AuthorModel, CategoryModel
+from services.book_service import add_book_with_authors_and_categories
 from schemas import BookSchema, BookUpdateSchema, CategorySchema, BookCategorySchema
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -18,18 +19,23 @@ class BookList(MethodView):
     @blp.arguments(BookSchema)
     @blp.response(201, BookSchema)
     def post(self, book_data):
-        book = BookModel(title=book_data["title"])
-        if 'author_ids' in book_data:
-            book.authors = AuthorModel.query.filter(
-                AuthorModel.id.in_(book_data['author_ids'])).all()
-        if 'category_ids' in book_data:
-            book.categories = CategoryModel.query.filter(
-                CategoryModel.id.in_(book_data['category_ids'])).all()
-        try:
-            db.session.add(book)
-            db.session.commit()
-        except SQLAlchemyError:
-            abort(500, message="An error occurred while inserting the book.")
+        book = add_book_with_authors_and_categories(
+            book_title=book_data["title"],
+            author_names=book_data.get("author_ids", []),
+            category_names=book_data.get("category_ids", [])
+        )
+#        book = BookModel(title=book_data["title"])
+#        if 'author_ids' in book_data:
+#            book.authors = AuthorModel.query.filter(
+#                AuthorModel.id.in_(book_data['author_ids'])).all()
+#        if 'category_ids' in book_data:
+#            book.categories = CategoryModel.query.filter(
+#                CategoryModel.id.in_(book_data['category_ids'])).all()
+#        try:
+#            db.session.add(book)
+#            db.session.commit()
+#        except SQLAlchemyError:
+#            abort(500, message="An error occurred while inserting the book.")
         return book
 
 

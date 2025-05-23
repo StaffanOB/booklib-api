@@ -16,6 +16,14 @@ class BookSchema(PlainBookSchema):
         "PlainCategorySchema"), dump_only=True)
 
 
+class BookCreateSchema(Schema):
+    title = fields.String(required=True, description="Title of the book")
+    author_names = fields.List(
+        fields.String(), required=True, description="List of author names")
+    category_names = fields.List(
+        fields.String(), required=True, description="List of category names")
+
+
 class BookUpdateSchema(Schema):
     title = fields.Str()
     author_id = fields.Int()
@@ -50,7 +58,6 @@ class CategoryUpdateSchema(Schema):
 
 class BookCategorySchema(Schema):
     category_id = fields.Int(required=True)
-
 
 
 class UserSchema(Schema):
