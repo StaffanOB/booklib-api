@@ -1,0 +1,174 @@
+BookLib API – Requirements Specification
+========================================
+
+1. Purpose
+----------
+
+This document defines the functional, technical, and operational requirements for the BookLib API, a RESTful service for managing books, users, tags, comments, ratings, and external enrichment plugins. It is intended for developers, QA, DevOps, and stakeholders involved in the design, implementation, and maintenance of the system.
+
+2. Scope
+--------
+
+- Book management (CRUD)
+- User management and authentication
+- Tagging and genre enrichment
+- Comments and ratings
+- External data enrichment via plugins
+- API documentation and automated testing
+
+3. Functional Requirements
+--------------------------
+
+3.1 User Management
+~~~~~~~~~~~~~~~~~~~
+
+- Register, authenticate, and manage users
+- Secure password storage (bcrypt/argon2)
+- JWT-based authentication
+
+3.2 Book Management
+~~~~~~~~~~~~~~~~~~~
+
+- CRUD operations for books
+- Many-to-many relationship with authors
+- Book cover image support
+- ISBN uniqueness enforcement
+
+3.3 Tag & Genre Management
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- CRUD operations for tags
+- All genres are stored as tags
+- Enriched genres from plugins are added as tags if not present
+- Many-to-many relationship with books
+
+3.4 Comments & Ratings
+~~~~~~~~~~~~~~~~~~~~~~~
+
+- Users can add, update, delete comments and ratings for books
+- Endpoints for retrieving all comments/ratings for a book
+
+3.5 External Enrichment Plugins
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Support for Google Books and Open Library plugins
+- Plugin selection per enrichment request
+- Enrichment includes title, authors, description, cover, genres
+- Rate limit handling and error reporting
+
+3.6 API Documentation
+~~~~~~~~~~~~~~~~~~~~~
+
+- Swagger/OpenAPI 3.0 documentation
+- Accessible at `/docs` endpoint
+
+3.7 Automated Testing
+~~~~~~~~~~~~~~~~~~~~
+
+- Unit tests (pytest)
+- Integration tests (Robot Framework)
+- Test coverage for all endpoints and business logic
+
+4. Technical Requirements
+-------------------------
+
+4.1 Technology Stack
+~~~~~~~~~~~~~~~~~~~~
+
+- Python 3.12+
+- Flask, Flask-SQLAlchemy, Flask-Migrate, Alembic
+- SQLite (default, configurable)
+- bcrypt, argon2-cffi
+- requests
+- pytest, robotframework
+- sphinx
+
+4.2 Environment & Setup
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Use a Python virtual environment (`python -m venv .venv`)
+- All dependencies listed in `requirements.txt`
+- Database migrations managed via Alembic/Flask-Migrate
+- Environment variables for secrets and configuration
+
+  Setup Steps
+  ~~~~~~~~~~~
+
+  1. Install dependencies:
+
+     .. code-block:: bash
+
+        pip install -r requirements.txt
+
+  2. Initialize database:
+
+     .. code-block:: bash
+
+        python -m flask db upgrade
+
+  3. Run the API:
+
+     .. code-block:: bash
+
+        python -m app.main
+
+5. Security Requirements
+------------------------
+
+- All sensitive endpoints require JWT authentication
+- Passwords must be hashed and salted
+- Input validation and error handling on all endpoints
+- No sensitive data exposed in logs or error messages
+
+6. Operational Requirements
+---------------------------
+
+- API must be stateless and scalable
+- Logging of all requests and errors
+- Monitoring endpoints for health/status (future requirement)
+- Automated deployment scripts (future requirement)
+
+7. Documentation & Traceability
+-------------------------------
+
+- All endpoints documented in Swagger/OpenAPI
+- Codebase must be commented and follow PEP8
+- Requirements document maintained in version control
+
+8. Change Management
+--------------------
+
+- All changes must be reviewed via pull requests
+- Automated tests must pass before merge
+- Database migrations must be versioned and reversible
+
+9. Glossary
+-----------
+
+- **Book**: Entity representing a book in the library
+- **Tag**: Label/category, including genres
+- **Plugin**: External enrichment source (Google Books, Open Library)
+- **JWT**: JSON Web Token for authentication
+
+---
+**Document Owner:** API Product Team  
+**Version:** 1.0  
+**Last Updated:** 2025-09-23
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents
+
+   api_overview
+   user_management
+   book_management
+   tag_genre_management
+   comments_ratings
+   external_enrichment
+   api_documentation
+   automated_testing
+   security_requirements
+   operational_requirements
+   change_management
+   glossary
+

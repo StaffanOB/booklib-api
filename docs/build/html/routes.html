@@ -1,0 +1,822 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>app.routes package &mdash; BookLib API 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="app package" href="app.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BookLib API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#module-app.main">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app.html">app package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">app.routes package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.routes.books">app.routes.books module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.books.add_book"><code class="docutils literal notranslate"><span class="pre">add_book()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.books.delete_book"><code class="docutils literal notranslate"><span class="pre">delete_book()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.books.get_book"><code class="docutils literal notranslate"><span class="pre">get_book()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.books.get_book_full"><code class="docutils literal notranslate"><span class="pre">get_book_full()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.books.get_books"><code class="docutils literal notranslate"><span class="pre">get_books()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.books.recheck_book_info"><code class="docutils literal notranslate"><span class="pre">recheck_book_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.books.update_book"><code class="docutils literal notranslate"><span class="pre">update_book()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.comments.add_comment"><code class="docutils literal notranslate"><span class="pre">add_comment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.comments.delete_comment"><code class="docutils literal notranslate"><span class="pre">delete_comment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.comments.get_comments"><code class="docutils literal notranslate"><span class="pre">get_comments()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.comments.update_comment"><code class="docutils literal notranslate"><span class="pre">update_comment()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-0">app.routes.comments module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">add_comment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">delete_comment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">get_comments()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">update_comment()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.routes.plugins">app.routes.plugins module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.plugins.get_plugins"><code class="docutils literal notranslate"><span class="pre">get_plugins()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.plugins.load_plugin"><code class="docutils literal notranslate"><span class="pre">load_plugin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.plugins.run_plugin"><code class="docutils literal notranslate"><span class="pre">run_plugin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.plugins.unload_plugin"><code class="docutils literal notranslate"><span class="pre">unload_plugin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.protected.protected"><code class="docutils literal notranslate"><span class="pre">protected()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-1">app.routes.protected module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">protected()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.ratings.add_rating"><code class="docutils literal notranslate"><span class="pre">add_rating()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.ratings.delete_rating"><code class="docutils literal notranslate"><span class="pre">delete_rating()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.ratings.get_ratings"><code class="docutils literal notranslate"><span class="pre">get_ratings()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.ratings.update_rating"><code class="docutils literal notranslate"><span class="pre">update_rating()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-2">app.routes.ratings module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">add_rating()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">delete_rating()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">get_ratings()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">update_rating()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">add_book()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">delete_book()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11"><code class="docutils literal notranslate"><span class="pre">get_book()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">get_book_full()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13"><code class="docutils literal notranslate"><span class="pre">get_books()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14"><code class="docutils literal notranslate"><span class="pre">recheck_book_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15"><code class="docutils literal notranslate"><span class="pre">update_book()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.routes.tags">app.routes.tags module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.tags.add_tag"><code class="docutils literal notranslate"><span class="pre">add_tag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.tags.delete_tag"><code class="docutils literal notranslate"><span class="pre">delete_tag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.tags.ensure_default_tags"><code class="docutils literal notranslate"><span class="pre">ensure_default_tags()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.tags.get_tags"><code class="docutils literal notranslate"><span class="pre">get_tags()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.tags.update_tag"><code class="docutils literal notranslate"><span class="pre">update_tag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.users.delete_user"><code class="docutils literal notranslate"><span class="pre">delete_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.users.get_user"><code class="docutils literal notranslate"><span class="pre">get_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.users.get_users"><code class="docutils literal notranslate"><span class="pre">get_users()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.users.login"><code class="docutils literal notranslate"><span class="pre">login()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.routes.users.register"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-4">app.routes.users module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id16"><code class="docutils literal notranslate"><span class="pre">delete_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17"><code class="docutils literal notranslate"><span class="pre">get_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18"><code class="docutils literal notranslate"><span class="pre">get_users()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19"><code class="docutils literal notranslate"><span class="pre">login()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.routes">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BookLib API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">app.routes package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/routes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="app-routes-package">
+<h1>app.routes package<a class="headerlink" href="#app-routes-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-app.routes.books">
+<span id="app-routes-books-module"></span><h2>app.routes.books module<a class="headerlink" href="#module-app.routes.books" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.books.add_book">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">add_book</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#add_book"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.books.add_book" title="Link to this definition"></a></dt>
+<dd><p>Add a new book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.books.delete_book">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">delete_book</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#delete_book"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.books.delete_book" title="Link to this definition"></a></dt>
+<dd><p>Delete a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.books.get_book">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">get_book</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#get_book"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.books.get_book" title="Link to this definition"></a></dt>
+<dd><p>Get a book by ID
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.books.get_book_full">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">get_book_full</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#get_book_full"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.books.get_book_full" title="Link to this definition"></a></dt>
+<dd><p>Get book info, ratings, and comments
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.books.get_books">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">get_books</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#get_books"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.books.get_books" title="Link to this definition"></a></dt>
+<dd><p>Get all books
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.books.recheck_book_info">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">recheck_book_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#recheck_book_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.books.recheck_book_info" title="Link to this definition"></a></dt>
+<dd><p>Recheck and update book info by ID
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.books.update_book">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">update_book</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#update_book"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.books.update_book" title="Link to this definition"></a></dt>
+<dd><p>Update a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function" id="module-app.routes.comments">
+<dt class="sig sig-object py" id="app.routes.comments.add_comment">
+<span class="sig-prename descclassname"><span class="pre">app.routes.comments.</span></span><span class="sig-name descname"><span class="pre">add_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/comments.html#add_comment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.comments.add_comment" title="Link to this definition"></a></dt>
+<dd><p>Add a comment for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Comments</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.comments.delete_comment">
+<span class="sig-prename descclassname"><span class="pre">app.routes.comments.</span></span><span class="sig-name descname"><span class="pre">delete_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/comments.html#delete_comment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.comments.delete_comment" title="Link to this definition"></a></dt>
+<dd><p>Delete a comment for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Comments</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.comments.get_comments">
+<span class="sig-prename descclassname"><span class="pre">app.routes.comments.</span></span><span class="sig-name descname"><span class="pre">get_comments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/comments.html#get_comments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.comments.get_comments" title="Link to this definition"></a></dt>
+<dd><p>Get comments for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Comments</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.comments.update_comment">
+<span class="sig-prename descclassname"><span class="pre">app.routes.comments.</span></span><span class="sig-name descname"><span class="pre">update_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/comments.html#update_comment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.comments.update_comment" title="Link to this definition"></a></dt>
+<dd><p>Update a comment for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Comments</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="module-0">
+<span id="app-routes-comments-module"></span><h2>app.routes.comments module<a class="headerlink" href="#module-0" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">app.routes.comments.</span></span><span class="sig-name descname"><span class="pre">add_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/comments.html#add_comment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Add a comment for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Comments</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">app.routes.comments.</span></span><span class="sig-name descname"><span class="pre">delete_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/comments.html#delete_comment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd><p>Delete a comment for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Comments</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-prename descclassname"><span class="pre">app.routes.comments.</span></span><span class="sig-name descname"><span class="pre">get_comments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/comments.html#get_comments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>Get comments for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Comments</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-prename descclassname"><span class="pre">app.routes.comments.</span></span><span class="sig-name descname"><span class="pre">update_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/comments.html#update_comment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd><p>Update a comment for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Comments</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="module-app.routes.plugins">
+<span id="app-routes-plugins-module"></span><h2>app.routes.plugins module<a class="headerlink" href="#module-app.routes.plugins" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.plugins.get_plugins">
+<span class="sig-prename descclassname"><span class="pre">app.routes.plugins.</span></span><span class="sig-name descname"><span class="pre">get_plugins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/plugins.html#get_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.plugins.get_plugins" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.plugins.load_plugin">
+<span class="sig-prename descclassname"><span class="pre">app.routes.plugins.</span></span><span class="sig-name descname"><span class="pre">load_plugin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/plugins.html#load_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.plugins.load_plugin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.plugins.run_plugin">
+<span class="sig-prename descclassname"><span class="pre">app.routes.plugins.</span></span><span class="sig-name descname"><span class="pre">run_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/plugins.html#run_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.plugins.run_plugin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.plugins.unload_plugin">
+<span class="sig-prename descclassname"><span class="pre">app.routes.plugins.</span></span><span class="sig-name descname"><span class="pre">unload_plugin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/plugins.html#unload_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.plugins.unload_plugin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function" id="module-app.routes.protected">
+<dt class="sig sig-object py" id="app.routes.protected.protected">
+<span class="sig-prename descclassname"><span class="pre">app.routes.protected.</span></span><span class="sig-name descname"><span class="pre">protected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/protected.html#protected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.protected.protected" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-1">
+<span id="app-routes-protected-module"></span><h2>app.routes.protected module<a class="headerlink" href="#module-1" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-prename descclassname"><span class="pre">app.routes.protected.</span></span><span class="sig-name descname"><span class="pre">protected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/protected.html#protected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function" id="module-app.routes.ratings">
+<dt class="sig sig-object py" id="app.routes.ratings.add_rating">
+<span class="sig-prename descclassname"><span class="pre">app.routes.ratings.</span></span><span class="sig-name descname"><span class="pre">add_rating</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/ratings.html#add_rating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.ratings.add_rating" title="Link to this definition"></a></dt>
+<dd><p>Add a rating for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ratings</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.ratings.delete_rating">
+<span class="sig-prename descclassname"><span class="pre">app.routes.ratings.</span></span><span class="sig-name descname"><span class="pre">delete_rating</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rating_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/ratings.html#delete_rating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.ratings.delete_rating" title="Link to this definition"></a></dt>
+<dd><p>Delete a rating for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ratings</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.ratings.get_ratings">
+<span class="sig-prename descclassname"><span class="pre">app.routes.ratings.</span></span><span class="sig-name descname"><span class="pre">get_ratings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/ratings.html#get_ratings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.ratings.get_ratings" title="Link to this definition"></a></dt>
+<dd><p>Get average rating for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ratings</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.ratings.update_rating">
+<span class="sig-prename descclassname"><span class="pre">app.routes.ratings.</span></span><span class="sig-name descname"><span class="pre">update_rating</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rating_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/ratings.html#update_rating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.ratings.update_rating" title="Link to this definition"></a></dt>
+<dd><p>Update a rating for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ratings</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="module-2">
+<span id="app-routes-ratings-module"></span><h2>app.routes.ratings module<a class="headerlink" href="#module-2" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-prename descclassname"><span class="pre">app.routes.ratings.</span></span><span class="sig-name descname"><span class="pre">add_rating</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/ratings.html#add_rating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd><p>Add a rating for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ratings</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-prename descclassname"><span class="pre">app.routes.ratings.</span></span><span class="sig-name descname"><span class="pre">delete_rating</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rating_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/ratings.html#delete_rating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd><p>Delete a rating for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ratings</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-prename descclassname"><span class="pre">app.routes.ratings.</span></span><span class="sig-name descname"><span class="pre">get_ratings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/ratings.html#get_ratings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd><p>Get average rating for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ratings</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-prename descclassname"><span class="pre">app.routes.ratings.</span></span><span class="sig-name descname"><span class="pre">update_rating</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rating_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/ratings.html#update_rating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd><p>Update a rating for a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ratings</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function" id="module-3">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">add_book</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#add_book"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dd><p>Add a new book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">delete_book</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#delete_book"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dd><p>Delete a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id11">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">get_book</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#get_book"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
+<dd><p>Get a book by ID
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">get_book_full</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#get_book_full"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
+<dd><p>Get book info, ratings, and comments
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id13">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">get_books</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#get_books"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id13" title="Link to this definition"></a></dt>
+<dd><p>Get all books
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id14">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">recheck_book_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#recheck_book_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id14" title="Link to this definition"></a></dt>
+<dd><p>Recheck and update book info by ID
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id15">
+<span class="sig-prename descclassname"><span class="pre">app.routes.books.</span></span><span class="sig-name descname"><span class="pre">update_book</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/books.html#update_book"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id15" title="Link to this definition"></a></dt>
+<dd><p>Update a book
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Books</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="module-app.routes.tags">
+<span id="app-routes-tags-module"></span><h2>app.routes.tags module<a class="headerlink" href="#module-app.routes.tags" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.tags.add_tag">
+<span class="sig-prename descclassname"><span class="pre">app.routes.tags.</span></span><span class="sig-name descname"><span class="pre">add_tag</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/tags.html#add_tag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.tags.add_tag" title="Link to this definition"></a></dt>
+<dd><p>Add a new tag
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Tags</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.tags.delete_tag">
+<span class="sig-prename descclassname"><span class="pre">app.routes.tags.</span></span><span class="sig-name descname"><span class="pre">delete_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/tags.html#delete_tag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.tags.delete_tag" title="Link to this definition"></a></dt>
+<dd><p>Delete a tag
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Tags</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.tags.ensure_default_tags">
+<span class="sig-prename descclassname"><span class="pre">app.routes.tags.</span></span><span class="sig-name descname"><span class="pre">ensure_default_tags</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/tags.html#ensure_default_tags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.tags.ensure_default_tags" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.tags.get_tags">
+<span class="sig-prename descclassname"><span class="pre">app.routes.tags.</span></span><span class="sig-name descname"><span class="pre">get_tags</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/tags.html#get_tags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.tags.get_tags" title="Link to this definition"></a></dt>
+<dd><p>Get all tags
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Tags</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.tags.update_tag">
+<span class="sig-prename descclassname"><span class="pre">app.routes.tags.</span></span><span class="sig-name descname"><span class="pre">update_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/tags.html#update_tag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.tags.update_tag" title="Link to this definition"></a></dt>
+<dd><p>Update a tag
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Tags</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function" id="module-app.routes.users">
+<dt class="sig sig-object py" id="app.routes.users.delete_user">
+<span class="sig-prename descclassname"><span class="pre">app.routes.users.</span></span><span class="sig-name descname"><span class="pre">delete_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/users.html#delete_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.users.delete_user" title="Link to this definition"></a></dt>
+<dd><p>Delete a user by ID
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Users</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.users.get_user">
+<span class="sig-prename descclassname"><span class="pre">app.routes.users.</span></span><span class="sig-name descname"><span class="pre">get_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/users.html#get_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.users.get_user" title="Link to this definition"></a></dt>
+<dd><p>Get a user by ID
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Users</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.users.get_users">
+<span class="sig-prename descclassname"><span class="pre">app.routes.users.</span></span><span class="sig-name descname"><span class="pre">get_users</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/users.html#get_users"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.users.get_users" title="Link to this definition"></a></dt>
+<dd><p>Get all users
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Users</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.users.login">
+<span class="sig-prename descclassname"><span class="pre">app.routes.users.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/users.html#login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.users.login" title="Link to this definition"></a></dt>
+<dd><p>User login
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Users</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routes.users.register">
+<span class="sig-prename descclassname"><span class="pre">app.routes.users.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/users.html#register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routes.users.register" title="Link to this definition"></a></dt>
+<dd><p>User registration
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Users</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="module-4">
+<span id="app-routes-users-module"></span><h2>app.routes.users module<a class="headerlink" href="#module-4" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id16">
+<span class="sig-prename descclassname"><span class="pre">app.routes.users.</span></span><span class="sig-name descname"><span class="pre">delete_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/users.html#delete_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id16" title="Link to this definition"></a></dt>
+<dd><p>Delete a user by ID
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Users</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id17">
+<span class="sig-prename descclassname"><span class="pre">app.routes.users.</span></span><span class="sig-name descname"><span class="pre">get_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/users.html#get_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id17" title="Link to this definition"></a></dt>
+<dd><p>Get a user by ID
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Users</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id18">
+<span class="sig-prename descclassname"><span class="pre">app.routes.users.</span></span><span class="sig-name descname"><span class="pre">get_users</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/users.html#get_users"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id18" title="Link to this definition"></a></dt>
+<dd><p>Get all users
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Users</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id19">
+<span class="sig-prename descclassname"><span class="pre">app.routes.users.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/users.html#login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id19" title="Link to this definition"></a></dt>
+<dd><p>User login
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Users</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id20">
+<span class="sig-prename descclassname"><span class="pre">app.routes.users.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/routes/users.html#register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id20" title="Link to this definition"></a></dt>
+<dd><p>User registration
+—
+tags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Users</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="module-app.routes">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-app.routes" title="Link to this heading"></a></h2>
+<p>app.routes
+:no-index:</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="app.html" class="btn btn-neutral float-left" title="app package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Staffan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,752 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BookLib API Use Cases &mdash; BookLib API 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="app" href="modules.html" />
+    <link rel="prev" title="BookLib API – Requirements Specification" href="requirements.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BookLib API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">BookLib API – Requirements Specification</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BookLib API Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#add-a-book">Add a Book</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#actors">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pre-conditions">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-flow">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alternative-exception-flows">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-conditions">Post Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supplemental-requirements">Supplemental Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visual-model">Visual Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#enrich-book-info">Enrich Book Info</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Post Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Supplemental Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Visual Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#register-a-new-user">Register a New User</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Post Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#authenticate-and-login">Authenticate and Login</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Post Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#update-book-information">Update Book Information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Post Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#delete-a-book">Delete a Book</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Post Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#add-remove-tags-to-a-book">Add/Remove Tags to a Book</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32">Post Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#add-a-comment-or-rating">Add a Comment or Rating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id33">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id36">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">Post Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#search-for-books">Search for Books</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id38">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id40">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id41">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id42">Post Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#list-books-by-tag-genre">List Books by Tag/Genre</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id43">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id44">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id45">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id46">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id47">Post Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#plugin-management">Plugin Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id48">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id49">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id50">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id51">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id52">Post Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#view-book-cover">View Book Cover</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id53">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id54">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id55">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id56">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id57">Post Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#admin-operations">Admin Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id58">Actors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id59">Pre-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id60">Basic Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id61">Alternative/Exception Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id62">Post Conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#module-app.main">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app.html">app package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BookLib API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">BookLib API Use Cases</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/use_cases.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="booklib-api-use-cases">
+<h1>BookLib API Use Cases<a class="headerlink" href="#booklib-api-use-cases" title="Link to this heading"></a></h1>
+<section id="add-a-book">
+<h2>Add a Book<a class="headerlink" href="#add-a-book" title="Link to this heading"></a></h2>
+<section id="actors">
+<h3>Actors<a class="headerlink" href="#actors" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User (authenticated)</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="pre-conditions">
+<h3>Pre-Conditions<a class="headerlink" href="#pre-conditions" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User is registered and logged in</p></li>
+<li><p>User has a valid JWT token</p></li>
+</ul>
+</section>
+<section id="basic-flow">
+<h3>Basic Flow<a class="headerlink" href="#basic-flow" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>User sends a POST request to <cite>/books</cite> with book data (title, authors, description, etc.) and JWT token in the header.</p></li>
+<li><p>API validates the request and checks for required fields.</p></li>
+<li><p>API creates a new book record in the database.</p></li>
+<li><p>API returns the new book’s ID and details in the response.</p></li>
+</ol>
+</section>
+<section id="alternative-exception-flows">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#alternative-exception-flows" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If required fields are missing, API returns a 400 error with a message.</p></li>
+<li><p>If the book already exists (same title and authors), API returns a 400 error.</p></li>
+<li><p>If the JWT token is invalid or missing, API returns a 401 error.</p></li>
+</ul>
+</section>
+<section id="post-conditions">
+<h3>Post Conditions<a class="headerlink" href="#post-conditions" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>New book is stored in the database and linked to the user (if applicable).</p></li>
+<li><p>Book is available for further actions (enrichment, comments, ratings).</p></li>
+</ul>
+</section>
+<section id="supplemental-requirements">
+<h3>Supplemental Requirements<a class="headerlink" href="#supplemental-requirements" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>All input must be validated and sanitized.</p></li>
+<li><p>Book must be unique by title and authors.</p></li>
+<li><p>API must log the creation event for audit purposes.</p></li>
+</ul>
+</section>
+<section id="visual-model">
+<h3>Visual Model<a class="headerlink" href="#visual-model" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">User</span> <span class="o">-&gt;</span> <span class="n">API</span><span class="p">:</span> <span class="n">POST</span> <span class="o">/</span><span class="n">books</span>
+<span class="n">API</span> <span class="o">-&gt;</span> <span class="n">DB</span><span class="p">:</span> <span class="n">Create</span> <span class="n">Book</span>
+<span class="n">API</span> <span class="o">-&gt;</span> <span class="n">User</span><span class="p">:</span> <span class="n">Return</span> <span class="n">Book</span> <span class="n">ID</span>
+</pre></div>
+</div>
+<p>—</p>
+</section>
+</section>
+<section id="enrich-book-info">
+<h2>Enrich Book Info<a class="headerlink" href="#enrich-book-info" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Actors<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User (authenticated)</p></li>
+<li><p>API Server</p></li>
+<li><p>External Plugin (Google Books, Open Library)</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Pre-Conditions<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Book exists in the database</p></li>
+<li><p>User is authenticated</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Basic Flow<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>User sends a POST request to <cite>/books/{id}/recheck</cite> with plugin selection and JWT token.</p></li>
+<li><p>API calls the selected plugin to fetch external book data.</p></li>
+<li><p>API updates the book record with enriched info (title, authors, cover, genres).</p></li>
+<li><p>API adds new genres as tags if not already present.</p></li>
+<li><p>API returns updated book info.</p></li>
+</ol>
+</section>
+<section id="id4">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If plugin fails or rate limit is hit, API returns an error message.</p></li>
+<li><p>If book does not exist, API returns a 404 error.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>Post Conditions<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Book info is updated and genres are reflected as tags.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Supplemental Requirements<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>API must handle plugin errors gracefully.</p></li>
+<li><p>All enriched data must be validated before updating the database.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>Visual Model<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">User</span> <span class="o">-&gt;</span> <span class="n">API</span><span class="p">:</span> <span class="n">POST</span> <span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">recheck</span>
+<span class="n">API</span> <span class="o">-&gt;</span> <span class="n">Plugin</span><span class="p">:</span> <span class="n">Fetch</span> <span class="n">Data</span>
+<span class="n">API</span> <span class="o">-&gt;</span> <span class="n">DB</span><span class="p">:</span> <span class="n">Update</span> <span class="n">Book</span>
+<span class="n">API</span> <span class="o">-&gt;</span> <span class="n">User</span><span class="p">:</span> <span class="n">Return</span> <span class="n">Updated</span> <span class="n">Info</span>
+</pre></div>
+</div>
+<p>—</p>
+</section>
+</section>
+<section id="register-a-new-user">
+<h2>Register a New User<a class="headerlink" href="#register-a-new-user" title="Link to this heading"></a></h2>
+<section id="id8">
+<h3>Actors<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Visitor</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="id9">
+<h3>Pre-Conditions<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Visitor is not registered</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Basic Flow<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Visitor sends a POST request to <cite>/users/register</cite> with registration data.</p></li>
+<li><p>API validates input and checks for existing user.</p></li>
+<li><p>API creates a new user record and hashes the password.</p></li>
+<li><p>API returns success message or JWT token.</p></li>
+</ol>
+</section>
+<section id="id11">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If user already exists, API returns a 400 error.</p></li>
+<li><p>If input is invalid, API returns a 400 error.</p></li>
+</ul>
+</section>
+<section id="id12">
+<h3>Post Conditions<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>New user is registered and can log in.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="authenticate-and-login">
+<h2>Authenticate and Login<a class="headerlink" href="#authenticate-and-login" title="Link to this heading"></a></h2>
+<section id="id13">
+<h3>Actors<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="id14">
+<h3>Pre-Conditions<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User is registered</p></li>
+</ul>
+</section>
+<section id="id15">
+<h3>Basic Flow<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>User sends a POST request to <cite>/users/login</cite> with credentials.</p></li>
+<li><p>API validates credentials.</p></li>
+<li><p>API issues a JWT token on success.</p></li>
+</ol>
+</section>
+<section id="id16">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If credentials are invalid, API returns a 401 error.</p></li>
+</ul>
+</section>
+<section id="id17">
+<h3>Post Conditions<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User receives JWT token for authenticated requests.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="update-book-information">
+<h2>Update Book Information<a class="headerlink" href="#update-book-information" title="Link to this heading"></a></h2>
+<section id="id18">
+<h3>Actors<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User (authenticated)</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="id19">
+<h3>Pre-Conditions<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Book exists</p></li>
+<li><p>User is authenticated</p></li>
+</ul>
+</section>
+<section id="id20">
+<h3>Basic Flow<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>User sends a PATCH/PUT request to <cite>/books/{id}</cite> with updated data.</p></li>
+<li><p>API validates and applies changes.</p></li>
+<li><p>API returns updated book info.</p></li>
+</ol>
+</section>
+<section id="id21">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If book does not exist, API returns a 404 error.</p></li>
+<li><p>If input is invalid, API returns a 400 error.</p></li>
+</ul>
+</section>
+<section id="id22">
+<h3>Post Conditions<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Book info is updated in the database.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="delete-a-book">
+<h2>Delete a Book<a class="headerlink" href="#delete-a-book" title="Link to this heading"></a></h2>
+<section id="id23">
+<h3>Actors<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User (authenticated)</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="id24">
+<h3>Pre-Conditions<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Book exists</p></li>
+<li><p>User is authenticated and authorized</p></li>
+</ul>
+</section>
+<section id="id25">
+<h3>Basic Flow<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>User sends a DELETE request to <cite>/books/{id}</cite>.</p></li>
+<li><p>API validates authorization and deletes the book.</p></li>
+<li><p>API returns success message.</p></li>
+</ol>
+</section>
+<section id="id26">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If book does not exist, API returns a 404 error.</p></li>
+<li><p>If user is not authorized, API returns a 403 error.</p></li>
+</ul>
+</section>
+<section id="id27">
+<h3>Post Conditions<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Book and related data are removed from the database.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="add-remove-tags-to-a-book">
+<h2>Add/Remove Tags to a Book<a class="headerlink" href="#add-remove-tags-to-a-book" title="Link to this heading"></a></h2>
+<section id="id28">
+<h3>Actors<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User (authenticated)</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="id29">
+<h3>Pre-Conditions<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Book exists</p></li>
+<li><p>User is authenticated</p></li>
+</ul>
+</section>
+<section id="id30">
+<h3>Basic Flow<a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>User sends a POST/DELETE request to <cite>/books/{id}/tags</cite> with tag data.</p></li>
+<li><p>API adds or removes tags from the book.</p></li>
+<li><p>API returns updated book info.</p></li>
+</ol>
+</section>
+<section id="id31">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If tag does not exist, API creates it.</p></li>
+<li><p>If book does not exist, API returns a 404 error.</p></li>
+</ul>
+</section>
+<section id="id32">
+<h3>Post Conditions<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Book’s tags are updated in the database.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="add-a-comment-or-rating">
+<h2>Add a Comment or Rating<a class="headerlink" href="#add-a-comment-or-rating" title="Link to this heading"></a></h2>
+<section id="id33">
+<h3>Actors<a class="headerlink" href="#id33" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User (authenticated)</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="id34">
+<h3>Pre-Conditions<a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Book exists</p></li>
+<li><p>User is authenticated</p></li>
+</ul>
+</section>
+<section id="id35">
+<h3>Basic Flow<a class="headerlink" href="#id35" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>User sends a POST request to <cite>/books/{id}/comments</cite> or <cite>/books/{id}/ratings</cite>.</p></li>
+<li><p>API validates and stores the comment or rating.</p></li>
+<li><p>API returns updated list of comments/ratings.</p></li>
+</ol>
+</section>
+<section id="id36">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id36" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If book does not exist, API returns a 404 error.</p></li>
+<li><p>If input is invalid, API returns a 400 error.</p></li>
+</ul>
+</section>
+<section id="id37">
+<h3>Post Conditions<a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Comment or rating is stored and visible to other users.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="search-for-books">
+<h2>Search for Books<a class="headerlink" href="#search-for-books" title="Link to this heading"></a></h2>
+<section id="id38">
+<h3>Actors<a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="id39">
+<h3>Pre-Conditions<a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Books exist in the database</p></li>
+</ul>
+</section>
+<section id="id40">
+<h3>Basic Flow<a class="headerlink" href="#id40" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>User sends a GET request to <cite>/books</cite> with search parameters (title, author, tag).</p></li>
+<li><p>API filters and returns matching books.</p></li>
+</ol>
+</section>
+<section id="id41">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id41" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If no books match, API returns an empty list.</p></li>
+</ul>
+</section>
+<section id="id42">
+<h3>Post Conditions<a class="headerlink" href="#id42" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User receives a list of matching books.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="list-books-by-tag-genre">
+<h2>List Books by Tag/Genre<a class="headerlink" href="#list-books-by-tag-genre" title="Link to this heading"></a></h2>
+<section id="id43">
+<h3>Actors<a class="headerlink" href="#id43" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="id44">
+<h3>Pre-Conditions<a class="headerlink" href="#id44" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Tags/genres exist</p></li>
+</ul>
+</section>
+<section id="id45">
+<h3>Basic Flow<a class="headerlink" href="#id45" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>User sends a GET request to <cite>/tags/{tag}/books</cite>.</p></li>
+<li><p>API returns books with the specified tag/genre.</p></li>
+</ol>
+</section>
+<section id="id46">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id46" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If tag does not exist, API returns a 404 error.</p></li>
+</ul>
+</section>
+<section id="id47">
+<h3>Post Conditions<a class="headerlink" href="#id47" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User receives a list of books for the tag/genre.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="plugin-management">
+<h2>Plugin Management<a class="headerlink" href="#plugin-management" title="Link to this heading"></a></h2>
+<section id="id48">
+<h3>Actors<a class="headerlink" href="#id48" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Admin User</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="id49">
+<h3>Pre-Conditions<a class="headerlink" href="#id49" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Admin is authenticated</p></li>
+</ul>
+</section>
+<section id="id50">
+<h3>Basic Flow<a class="headerlink" href="#id50" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Admin sends a POST/DELETE request to <cite>/plugins</cite> to add or remove plugins.</p></li>
+<li><p>API updates plugin configuration.</p></li>
+<li><p>API returns updated plugin list.</p></li>
+</ol>
+</section>
+<section id="id51">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id51" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If plugin is invalid, API returns a 400 error.</p></li>
+</ul>
+</section>
+<section id="id52">
+<h3>Post Conditions<a class="headerlink" href="#id52" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Plugin configuration is updated.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="view-book-cover">
+<h2>View Book Cover<a class="headerlink" href="#view-book-cover" title="Link to this heading"></a></h2>
+<section id="id53">
+<h3>Actors<a class="headerlink" href="#id53" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="id54">
+<h3>Pre-Conditions<a class="headerlink" href="#id54" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Book has a cover image</p></li>
+</ul>
+</section>
+<section id="id55">
+<h3>Basic Flow<a class="headerlink" href="#id55" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>User sends a GET request to <cite>/books/{id}/cover</cite>.</p></li>
+<li><p>API returns the book cover image URL or binary data.</p></li>
+</ol>
+</section>
+<section id="id56">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id56" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If cover is missing, API returns a placeholder or error.</p></li>
+</ul>
+</section>
+<section id="id57">
+<h3>Post Conditions<a class="headerlink" href="#id57" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User can view the book cover image.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="admin-operations">
+<h2>Admin Operations<a class="headerlink" href="#admin-operations" title="Link to this heading"></a></h2>
+<section id="id58">
+<h3>Actors<a class="headerlink" href="#id58" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Admin User</p></li>
+<li><p>API Server</p></li>
+</ul>
+</section>
+<section id="id59">
+<h3>Pre-Conditions<a class="headerlink" href="#id59" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Admin is authenticated</p></li>
+</ul>
+</section>
+<section id="id60">
+<h3>Basic Flow<a class="headerlink" href="#id60" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Admin sends requests to manage users, books, tags, and plugins.</p></li>
+<li><p>API validates permissions and performs requested operations.</p></li>
+<li><p>API returns results or error messages.</p></li>
+</ol>
+</section>
+<section id="id61">
+<h3>Alternative/Exception Flows<a class="headerlink" href="#id61" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If admin is not authorized, API returns a 403 error.</p></li>
+</ul>
+</section>
+<section id="id62">
+<h3>Post Conditions<a class="headerlink" href="#id62" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Admin can manage all aspects of the system.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="requirements.html" class="btn btn-neutral float-left" title="BookLib API – Requirements Specification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="app" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Staffan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

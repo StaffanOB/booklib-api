@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. Purpose &mdash; BookLib API 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="app" href="modules.html" />
+    <link rel="prev" title="BookLib API documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BookLib API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Purpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#scope">2. Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#functional-requirements">3. Functional Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#user-management">3.1 User Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#book-management">3.2 Book Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tag-genre-management">3.3 Tag &amp; Genre Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comments-ratings">3.4 Comments &amp; Ratings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#external-enrichment-plugins">3.5 External Enrichment Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-documentation">3.6 API Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automated-testing">3.7 Automated Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#technical-requirements">4. Technical Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#technology-stack">4.1 Technology Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#environment-setup">4.2 Environment &amp; Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#security-requirements">5. Security Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#operational-requirements">6. Operational Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#documentation-traceability">7. Documentation &amp; Traceability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#change-management">8. Change Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#glossary">9. Glossary</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#module-app.main">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app.html">app package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BookLib API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">1. Purpose</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/requirements.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">``</span></a>rst
+BookLib API – Requirements Specification
+========================================</p>
+<section id="purpose">
+<h1>1. Purpose<a class="headerlink" href="#purpose" title="Link to this heading"></a></h1>
+<p>This document defines the functional, technical, and operational requirements for the BookLib API, a RESTful service for managing books, users, tags, comments, ratings, and external enrichment plugins. It is intended for developers, QA, DevOps, and stakeholders involved in the design, implementation, and maintenance of the system.</p>
+</section>
+<section id="scope">
+<h1>2. Scope<a class="headerlink" href="#scope" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Book management (CRUD)</p></li>
+<li><p>User management and authentication</p></li>
+<li><p>Tagging and genre enrichment</p></li>
+<li><p>Comments and ratings</p></li>
+<li><p>External data enrichment via plugins</p></li>
+<li><p>API documentation and automated testing</p></li>
+</ul>
+</section>
+<section id="functional-requirements">
+<h1>3. Functional Requirements<a class="headerlink" href="#functional-requirements" title="Link to this heading"></a></h1>
+<section id="user-management">
+<h2>3.1 User Management<a class="headerlink" href="#user-management" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Register, authenticate, and manage users</p></li>
+<li><p>Secure password storage (bcrypt/argon2)</p></li>
+<li><p>JWT-based authentication</p></li>
+</ul>
+</section>
+<section id="book-management">
+<h2>3.2 Book Management<a class="headerlink" href="#book-management" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>CRUD operations for books</p></li>
+<li><p>Many-to-many relationship with authors</p></li>
+<li><p>Book cover image support</p></li>
+<li><p>ISBN uniqueness enforcement</p></li>
+</ul>
+</section>
+<section id="tag-genre-management">
+<h2>3.3 Tag &amp; Genre Management<a class="headerlink" href="#tag-genre-management" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>CRUD operations for tags</p></li>
+<li><p>All genres are stored as tags</p></li>
+<li><p>Enriched genres from plugins are added as tags if not present</p></li>
+<li><p>Many-to-many relationship with books</p></li>
+</ul>
+</section>
+<section id="comments-ratings">
+<h2>3.4 Comments &amp; Ratings<a class="headerlink" href="#comments-ratings" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Users can add, update, delete comments and ratings for books</p></li>
+<li><p>Endpoints for retrieving all comments/ratings for a book</p></li>
+</ul>
+</section>
+<section id="external-enrichment-plugins">
+<h2>3.5 External Enrichment Plugins<a class="headerlink" href="#external-enrichment-plugins" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Support for Google Books and Open Library plugins</p></li>
+<li><p>Plugin selection per enrichment request</p></li>
+<li><p>Enrichment includes title, authors, description, cover, genres</p></li>
+<li><p>Rate limit handling and error reporting</p></li>
+</ul>
+</section>
+<section id="api-documentation">
+<h2>3.6 API Documentation<a class="headerlink" href="#api-documentation" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Swagger/OpenAPI 3.0 documentation</p></li>
+<li><p>Accessible at <cite>/docs</cite> endpoint</p></li>
+</ul>
+</section>
+<section id="automated-testing">
+<h2>3.7 Automated Testing<a class="headerlink" href="#automated-testing" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Unit tests (pytest)</p></li>
+<li><p>Integration tests (Robot Framework)</p></li>
+<li><p>Test coverage for all endpoints and business logic</p></li>
+</ul>
+</section>
+</section>
+<section id="technical-requirements">
+<h1>4. Technical Requirements<a class="headerlink" href="#technical-requirements" title="Link to this heading"></a></h1>
+<section id="technology-stack">
+<h2>4.1 Technology Stack<a class="headerlink" href="#technology-stack" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Python 3.12+</p></li>
+<li><p>Flask, Flask-SQLAlchemy, Flask-Migrate, Alembic</p></li>
+<li><p>SQLite (default, configurable)</p></li>
+<li><p>bcrypt, argon2-cffi</p></li>
+<li><p>requests</p></li>
+<li><p>pytest, robotframework</p></li>
+<li><p>sphinx</p></li>
+</ul>
+</section>
+<section id="environment-setup">
+<h2>4.2 Environment &amp; Setup<a class="headerlink" href="#environment-setup" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Use a Python virtual environment (<cite>python -m venv .venv</cite>)</p></li>
+<li><p>All dependencies listed in <cite>requirements.txt</cite></p></li>
+<li><p>Database migrations managed via Alembic/Flask-Migrate</p></li>
+<li><p>Environment variables for secrets and configuration</p>
+<ol class="arabic">
+<li><p>Install dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p>Initialize database:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>flask<span class="w"> </span>db<span class="w"> </span>upgrade
+</pre></div>
+</div>
+</li>
+<li><p>Run the API:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>app.main
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ul>
+</section>
+</section>
+<section id="security-requirements">
+<h1>5. Security Requirements<a class="headerlink" href="#security-requirements" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>All sensitive endpoints require JWT authentication</p></li>
+<li><p>Passwords must be hashed and salted</p></li>
+<li><p>Input validation and error handling on all endpoints</p></li>
+<li><p>No sensitive data exposed in logs or error messages</p></li>
+</ul>
+</section>
+<section id="operational-requirements">
+<h1>6. Operational Requirements<a class="headerlink" href="#operational-requirements" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>API must be stateless and scalable</p></li>
+<li><p>Logging of all requests and errors</p></li>
+<li><p>Monitoring endpoints for health/status (future requirement)</p></li>
+<li><p>Automated deployment scripts (future requirement)</p></li>
+</ul>
+</section>
+<section id="documentation-traceability">
+<h1>7. Documentation &amp; Traceability<a class="headerlink" href="#documentation-traceability" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>All endpoints documented in Swagger/OpenAPI</p></li>
+<li><p>Codebase must be commented and follow PEP8</p></li>
+<li><p>Requirements document maintained in version control</p></li>
+</ul>
+</section>
+<section id="change-management">
+<h1>8. Change Management<a class="headerlink" href="#change-management" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>All changes must be reviewed via pull requests</p></li>
+<li><p>Automated tests must pass before merge</p></li>
+<li><p>Database migrations must be versioned and reversible</p></li>
+</ul>
+</section>
+<section id="glossary">
+<h1>9. Glossary<a class="headerlink" href="#glossary" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><strong>Book</strong>: Entity representing a book in the library</p></li>
+<li><p><strong>Tag</strong>: Label/category, including genres</p></li>
+<li><p><strong>Plugin</strong>: External enrichment source (Google Books, Open Library)</p></li>
+<li><p><strong>JWT</strong>: JSON Web Token for authentication</p></li>
+</ul>
+<p>—
+<strong>Document Owner:</strong> API Product Team
+<strong>Version:</strong> 1.0
+<strong>Last Updated:</strong> 2025-09-23</p>
+<div class="toctree-wrapper compound">
+</div>
+<hr class="docutils" />
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="BookLib API documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="app" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Staffan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
