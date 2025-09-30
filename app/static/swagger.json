@@ -1,0 +1,610 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "BookLib API",
+    "version": "1.0.0",
+    "description": "API for managing books, users, tags, comments, ratings, and plugins. Tags are always ensured from a resource file."
+  },
+  "tags": [
+    {"name": "Books", "description": "Book management endpoints"},
+    {"name": "Users", "description": "User management endpoints"},
+    {"name": "Tags", "description": "Tag management endpoints. Required tags are always loaded from a resource file."},
+    {"name": "Comments", "description": "Comment endpoints"},
+    {"name": "Ratings", "description": "Rating endpoints"},
+    {"name": "Plugins", "description": "Plugin endpoints"}
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get all users",
+        "description": "Returns a list of all users. Requires JWT authentication.",
+        "security": [{"BearerAuth": []}],
+        "responses": {
+          "200": {
+            "description": "List of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {"type": "integer"},
+                      "username": {"type": "string"},
+                      "email": {"type": "string"}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/register": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "User registration",
+        "description": "Registers a new user with username, email, and password.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {"type": "string"},
+                  "email": {"type": "string"},
+                  "password": {"type": "string"}
+                },
+                "required": ["username", "email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "User registered"},
+          "400": {"description": "Missing fields"},
+          "409": {"description": "User exists"}
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "User login",
+        "description": "Authenticates a user and returns a JWT token.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {"type": "string"},
+                  "password": {"type": "string"}
+                },
+                "required": ["username", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "JWT token"},
+          "401": {"description": "Invalid credentials"}
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get a user by ID",
+        "description": "Returns a user by their ID. Requires JWT authentication.",
+        "security": [{"BearerAuth": []}],
+        "parameters": [
+          {"name": "user_id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "User details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {"type": "integer"},
+                    "username": {"type": "string"},
+                    "email": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {"description": "User not found"}
+        }
+      },
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete a user by ID",
+        "description": "Deletes a user by their ID. Requires JWT authentication.",
+        "security": [{"BearerAuth": []}],
+        "parameters": [
+          {"name": "user_id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "responses": {
+          "200": {"description": "User deleted"},
+          "404": {"description": "User not found"}
+        }
+      }
+    },
+    "/books": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "List books",
+        "responses": {"200": {"description": "List of books"}}
+      },
+      "post": {
+        "tags": ["Books"],
+        "summary": "Add book",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {"type": "string"},
+                  "isbn": {"type": "string"},
+                  "description": {"type": "string"},
+                  "publish_year": {"type": ["integer", "string", "null"]},
+                  "series": {"type": ["string", "null"]},
+                  "tags": {"type": "array", "items": {"type": "string"}},
+                  "plugin": {"type": "string", "description": "Plugin to use for enrichment (GoogleBooksPlugin, OpenLibraryPlugin)"}
+                },
+                "required": ["title"]
+              }
+            }
+          }
+        },
+        "responses": {"201": {"description": "Book added"}},
+        "security": [{"BearerAuth": []}]
+      }
+    },
+    "/books/{id}": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Get book",
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {"200": {"description": "Book details"}}
+      },
+      "put": {
+        "tags": ["Books"],
+        "summary": "Update book",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {"type": "string", "description": "Book title (auto-filled if ISBN provided)"},
+                    "isbn": {"type": "string", "description": "ISBN to fetch book info from plugin"},
+                    "publish_year": {"type": ["integer", "string", "null"], "description": "Publish year (auto-filled if ISBN provided)"},
+                    "series": {"type": ["string", "null"], "description": "Book series (auto-filled if ISBN provided)"},
+                    "tags": {"type": "array", "items": {"type": "string"}, "description": "Genres/subjects (auto-filled if ISBN provided)"},
+                    "plugin": {"type": "string", "description": "Plugin to use for enrichment (GoogleBooksPlugin, OpenLibraryPlugin)"}
+                  },
+                  "required": ["title"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {"description": "Book updated"},
+            "400": {"description": "Missing fields or invalid data"}
+          },
+        "security": [{"BearerAuth": []}]
+      },
+      "delete": {
+        "tags": ["Books"],
+        "summary": "Delete book",
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {"200": {"description": "Book deleted"}},
+        "security": [{"BearerAuth": []}]
+      }
+    },
+    "/books/{id}/recheck": {
+      "post": {
+        "tags": ["Books"],
+        "summary": "Recheck and update book info",
+        "description": "Rechecks and updates book info by ID using the selected plugin (default: GoogleBooksPlugin).",
+        "parameters": [
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plugin": {"type": "string", "description": "Plugin to use for enrichment (GoogleBooksPlugin, OpenLibraryPlugin)"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Book info rechecked and updated"},
+          "400": {"description": "Error or plugin not found"}
+        },
+        "security": [{"BearerAuth": []}]
+      }
+    },
+    "/tags": {
+      "get": {
+        "tags": ["Tags"],
+        "summary": "Get all tags",
+        "description": "Returns all tags in the database. Required tags are always loaded from a resource file.",
+        "responses": {"200": {"description": "List of tags", "content": {"application/json": {"schema": {"type": "array", "items": {"type": "object", "properties": {"id": {"type": "integer"}, "name": {"type": "string"}}}}}}}}
+      },
+      "post": {
+        "tags": ["Tags"],
+        "summary": "Add a new tag",
+        "description": "Adds a new tag to the database.",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object", "properties": {"name": {"type": "string"}}, "required": ["name"]}}}},
+        "responses": {"201": {"description": "Tag added", "content": {"application/json": {"schema": {"type": "object", "properties": {"id": {"type": "integer"}, "name": {"type": "string"}}}}}}},
+        "security": [{"BearerAuth": []}]
+      }
+    },
+    "/tags/{id}": {
+      "put": {
+        "tags": ["Tags"],
+        "summary": "Update a tag",
+        "description": "Updates the name of a tag.",
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object", "properties": {"name": {"type": "string"}}, "required": ["name"]}}}},
+        "responses": {"200": {"description": "Tag updated", "content": {"application/json": {"schema": {"type": "object", "properties": {"id": {"type": "integer"}, "name": {"type": "string"}}}}}}, "404": {"description": "Tag not found"}},
+        "security": [{"BearerAuth": []}]
+      },
+      "delete": {
+        "tags": ["Tags"],
+        "summary": "Delete a tag",
+        "description": "Deletes a tag from the database.",
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {"200": {"description": "Tag deleted"}, "404": {"description": "Tag not found"}},
+        "security": [{"BearerAuth": []}]
+      }
+    },
+    "/books/{id}/comments": {
+      "get": {
+        "tags": ["Comments"],
+        "summary": "Get comments for a book",
+        "description": "Returns all comments for a book.",
+        "parameters": [
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "List of comments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {"type": "integer"},
+                      "text": {"type": "string"},
+                      "user_id": {"type": "integer"}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Comments"],
+        "summary": "Add a comment for a book",
+        "description": "Adds a comment for a book. Requires JWT authentication.",
+        "parameters": [
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {"type": "string"}
+                },
+                "required": ["text"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Comment added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {"type": "integer"}
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "Missing text"}
+        },
+        "security": [{"BearerAuth": []}]
+      }
+    },
+    "/books/{id}/comments/{comment_id}": {
+      "put": {
+        "tags": ["Comments"],
+        "summary": "Update a comment for a book",
+        "description": "Updates a comment for a book. Requires JWT authentication.",
+        "parameters": [
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}},
+          {"name": "comment_id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {"type": "string"}
+                },
+                "required": ["text"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Comment updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {"type": "integer"},
+                    "text": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "Missing text"},
+          "404": {"description": "Comment not found"}
+        },
+        "security": [{"BearerAuth": []}]
+      },
+      "delete": {
+        "tags": ["Comments"],
+        "summary": "Delete a comment for a book",
+        "description": "Deletes a comment for a book. Requires JWT authentication.",
+        "parameters": [
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}},
+          {"name": "comment_id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "responses": {
+          "200": {"description": "Comment deleted"},
+          "404": {"description": "Comment not found"}
+        },
+        "security": [{"BearerAuth": []}]
+      }
+    },
+    "/books/{id}/ratings": {
+      "get": {
+        "tags": ["Ratings"],
+        "summary": "Get average rating for a book",
+        "description": "Returns the average rating for a book.",
+        "parameters": [
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Average rating",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "average": {"type": ["number", "null"]}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Ratings"],
+        "summary": "Add a rating for a book",
+        "description": "Adds a rating for a book. Requires JWT authentication. Each user can only rate a book once.",
+        "parameters": [
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rating": {"type": "integer"}
+                },
+                "required": ["rating"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Rating added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {"type": "integer"}
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "Missing rating"},
+          "409": {"description": "User has already rated this book"}
+        },
+        "security": [{"BearerAuth": []}]
+      }
+    },
+    "/books/{id}/ratings/{rating_id}": {
+      "put": {
+        "tags": ["Ratings"],
+        "summary": "Update a rating for a book",
+        "description": "Updates a rating for a book. Requires JWT authentication.",
+        "parameters": [
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}},
+          {"name": "rating_id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rating": {"type": "integer"}
+                },
+                "required": ["rating"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Rating updated"},
+          "400": {"description": "Missing rating"},
+          "404": {"description": "Rating not found"}
+        },
+        "security": [{"BearerAuth": []}]
+      },
+      "delete": {
+        "tags": ["Ratings"],
+        "summary": "Delete a rating for a book",
+        "description": "Deletes a rating for a book. Requires JWT authentication.",
+        "parameters": [
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}},
+          {"name": "rating_id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "responses": {
+          "200": {"description": "Rating deleted"},
+          "404": {"description": "Rating not found"}
+        },
+        "security": [{"BearerAuth": []}]
+      }
+    },
+    "/plugins": {"get": {"summary": "List plugins", "responses": {"200": {"description": "List of plugins"}}}},
+    "/plugins/load": {"post": {"summary": "Load plugin", "requestBody": {"required": true}, "responses": {"200": {"description": "Plugin loaded"}}}},
+    "/plugins/unload": {"post": {"summary": "Unload plugin", "requestBody": {"required": true}, "responses": {"200": {"description": "Plugin unloaded"}}}},
+      "/plugins/{plugin_name}/run": {
+        "post": {
+          "tags": ["Plugins"],
+          "summary": "Run a plugin",
+          "description": "Executes the specified plugin with provided input data.",
+          "parameters": [
+            {"name": "plugin_name", "in": "path", "required": true, "schema": {"type": "string"}}
+          ],
+          "requestBody": {
+            "required": false,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Input data for the plugin (e.g., ISBN for Goodreads)."
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {"description": "Plugin executed successfully"},
+            "404": {"description": "Plugin not found"},
+            "400": {"description": "Bad request or plugin error"}
+          }
+        }
+      },
+    "/books/{id}/full": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Get book info, ratings, and comments",
+        "description": "Returns book information, average rating, all ratings, and all comments for the specified book.",
+        "parameters": [
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Book info, ratings, and comments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {"type": "integer"},
+                    "title": {"type": "string"},
+                    "author": {"type": "string"},
+                    "description": {"type": "string"},
+                    "publish_year": {"type": ["integer", "null"]},
+                    "series": {"type": ["string", "null"]},
+                    "average_rating": {"type": ["number", "null"]},
+                    "ratings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {"type": "integer"},
+                          "user_id": {"type": "integer"},
+                          "rating": {"type": "integer"}
+                        }
+                      }
+                    },
+                    "comments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {"type": "integer"},
+                          "user_id": {"type": "integer"},
+                          "content": {"type": "string"}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {"description": "Book not found"}
+        }
+      }
+    }
+  }
+}
