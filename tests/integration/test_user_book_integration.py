@@ -21,10 +21,10 @@ def test_user_can_add_and_get_book(client):
     # Register a user
     response = client.post('/users/register', json={
         'username': 'integrationuser',
+        'email': 'integrationuser@example.com',
         'password': 'integrationpass'
     })
     assert response.status_code == 201
-    user_id = response.get_json()['id']
 
     # Login to get JWT
     response = client.post('/users/login', json={

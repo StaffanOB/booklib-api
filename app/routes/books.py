@@ -60,6 +60,7 @@ def get_book_full(id):
         'description': book.description,
         'publish_year': book.publish_year,
         'series': book.series,
+        'cover_url': book.cover_url,
         'average_rating': avg_rating,
         'ratings': [{'id': r.id, 'user_id': r.user_id, 'rating': r.rating} for r in ratings],
         'comments': [{'id': c.id, 'user_id': c.user_id, 'content': c.content} for c in comments]
@@ -102,7 +103,21 @@ def add_book():
             data['title'] = gr_data.get('title', data.get('title', ''))
             data['description'] = gr_data.get('description', data.get('description', ''))
             data['series'] = gr_data.get('series', data.get('series', ''))
-            data['publish_year'] = gr_data.get('publish_year', data.get('publish_year'))
+            
+            # Handle publish_year - extract year from date string if needed
+            publish_year_raw = gr_data.get('publish_year', data.get('publish_year'))
+            if publish_year_raw:
+                if isinstance(publish_year_raw, str):
+                    # Extract year from date string like "2016-10-18"
+                    try:
+                        data['publish_year'] = int(publish_year_raw.split('-')[0])
+                    except (ValueError, IndexError):
+                        data['publish_year'] = None
+                else:
+                    data['publish_year'] = publish_year_raw
+            else:
+                data['publish_year'] = None
+                
             data['tags'] = gr_data.get('genres', data.get('tags', []))
             # Handle authors
             author_names = gr_data.get('authors', [])
@@ -111,6 +126,18 @@ def add_book():
                 author = Author.query.filter_by(name=name).first()
                 if not author:
                     author = Author(name=name)
+                    db.session.add(author)
+                    db.session.commit()
+                author_ids.append(author.id)
+    
+    # Handle authors from request data if no plugin authors found
+    if not author_ids:
+        author_names = data.get('authors', [])
+        for name in author_names:
+            if name and name.strip():
+                author = Author.query.filter_by(name=name.strip()).first()
+                if not author:
+                    author = Author(name=name.strip())
                     db.session.add(author)
                     db.session.commit()
                 author_ids.append(author.id)
@@ -144,7 +171,7 @@ def add_book():
         description=data.get('description', ''),
         publish_year=data.get('publish_year'),
         series=data.get('series'),
-        cover_url=gr_data.get('cover_url') if gr_data and 'cover_url' in gr_data else None
+        cover_url=gr_data.get('cover_url') if gr_data and 'cover_url' in gr_data else data.get('cover_url')
     )
     db.session.add(book)
     db.session.commit()
@@ -237,7 +264,18 @@ def update_book(id):
     if 'description' in data:
         book.description = data['description']
     if 'publish_year' in data:
-        book.publish_year = data['publish_year']
+        # Handle publish_year - extract year from date string if needed
+        publish_year_raw = data['publish_year']
+        if publish_year_raw:
+            if isinstance(publish_year_raw, str):
+                try:
+                    book.publish_year = int(publish_year_raw.split('-')[0])
+                except (ValueError, IndexError):
+                    book.publish_year = None
+            else:
+                book.publish_year = publish_year_raw
+        else:
+            book.publish_year = None
     if 'series' in data:
         book.series = data['series']
     db.session.commit()
@@ -287,7 +325,17 @@ def recheck_book_info(id):
     book.title = gr_data.get('title', book.title)
     book.description = gr_data.get('description', book.description)
     book.series = gr_data.get('series', book.series)
-    book.publish_year = gr_data.get('publish_year', book.publish_year)
+    
+    # Handle publish_year - extract year from date string if needed
+    publish_year_raw = gr_data.get('publish_year', book.publish_year)
+    if publish_year_raw and publish_year_raw != book.publish_year:
+        if isinstance(publish_year_raw, str):
+            try:
+                book.publish_year = int(publish_year_raw.split('-')[0])
+            except (ValueError, IndexError):
+                pass  # Keep existing value if parsing fails
+        else:
+            book.publish_year = publish_year_raw
     # Update tags from enriched genres
     if gr_data.get('genres'):
         for genre in gr_data['genres']:

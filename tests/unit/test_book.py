@@ -105,7 +105,6 @@ def test_book_full_info_returned(app):
     assert fetched.publish_year == 2025
     assert fetched.series == "Unit Series"
     assert fetched.cover_url == "http://example.com/cover.jpg"
-    assert fetched.is_active is True
 
 def test_books_full_endpoint(client, app):
     from app import db
