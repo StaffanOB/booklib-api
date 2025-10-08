@@ -13,4 +13,4 @@ class Author(db.Model):
     updated_at = db.Column(db.DateTime, onupdate=lambda: datetime.now(timezone.utc))
     
     # Relationships
-    books = db.relationship("Book", back_populates="author")
+    books = db.relationship("Book", secondary="book_authors", back_populates="authors")
