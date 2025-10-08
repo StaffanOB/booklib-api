@@ -566,3 +566,190 @@
 2025-09-23 17:09:25,064 INFO werkzeug 127.0.0.1 - - [23/Sep/2025 17:09:25] "GET /books/2/comments HTTP/1.1" 200 -
 2025-09-23 17:09:28,889 INFO werkzeug 127.0.0.1 - - [23/Sep/2025 17:09:28] "GET /books/1/full HTTP/1.1" 200 -
 2025-09-23 17:09:37,877 INFO werkzeug 127.0.0.1 - - [23/Sep/2025 17:09:37] "GET /books/2/full HTTP/1.1" 200 -
+2025-10-06 15:50:33,594 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 15:50:33,594 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 15:50:33,594 INFO werkzeug  * Restarting with stat
+2025-10-06 15:50:33,822 WARNING werkzeug  * Debugger is active!
+2025-10-06 15:50:33,833 INFO werkzeug  * Debugger PIN: 174-920-319
+2025-10-06 16:24:11,362 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:24:11,362 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:24:11,362 INFO werkzeug  * Restarting with stat
+2025-10-06 16:24:11,577 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:24:11,579 INFO werkzeug  * Debugger PIN: 174-920-319
+2025-10-06 16:24:28,343 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:24:28] "GET /docs/ HTTP/1.1" 200 -
+2025-10-06 16:24:28,368 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:24:28] "GET /docs/swagger-ui-bundle.js HTTP/1.1" 200 -
+2025-10-06 16:24:28,368 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:24:28] "GET /docs/index.css HTTP/1.1" 200 -
+2025-10-06 16:24:28,368 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:24:28] "GET /docs/swagger-ui-standalone-preset.js HTTP/1.1" 200 -
+2025-10-06 16:24:28,369 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:24:28] "GET /docs/swagger-ui.css HTTP/1.1" 200 -
+2025-10-06 16:24:28,524 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:24:28] "GET /static/swagger.json HTTP/1.1" 200 -
+2025-10-06 16:24:28,585 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:24:28] "GET /docs/favicon-32x32.png HTTP/1.1" 200 -
+2025-10-06 16:24:39,614 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:24:39] "GET /health HTTP/1.1" 200 -
+2025-10-06 16:24:39,658 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:24:39] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-06 16:25:04,909 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:25:04,909 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:25:04,910 INFO werkzeug  * Restarting with stat
+2025-10-06 16:25:05,128 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:25:05,130 INFO werkzeug  * Debugger PIN: 174-920-319
+2025-10-06 16:25:05,236 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:25:05] "GET /health HTTP/1.1" 200 -
+2025-10-06 16:25:16,779 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:25:16] "GET /health HTTP/1.1" 200 -
+2025-10-06 16:25:23,875 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:25:23] "HEAD /docs/ HTTP/1.1" 200 -
+2025-10-06 16:25:44,287 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:25:44] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-06 16:27:07,822 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:27:07,822 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:27:07,822 INFO werkzeug  * Restarting with stat
+2025-10-06 16:27:08,058 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:27:08,060 INFO werkzeug  * Debugger PIN: 174-920-319
+2025-10-06 16:28:13,517 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:28:13,517 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:28:13,517 INFO werkzeug  * Restarting with stat
+2025-10-06 16:28:13,738 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:28:13,740 INFO werkzeug  * Debugger PIN: 575-726-775
+2025-10-06 16:28:17,271 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:28:17] "GET /health HTTP/1.1" 200 -
+2025-10-06 16:29:36,186 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:29:36,186 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:29:36,186 INFO werkzeug  * Restarting with stat
+2025-10-06 16:29:36,400 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:29:36,402 INFO werkzeug  * Debugger PIN: 575-726-775
+2025-10-06 16:29:39,729 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:29:39] "GET /health HTTP/1.1" 200 -
+2025-10-06 16:30:24,808 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:30:24] "[35m[1mPOST /users/register HTTP/1.1[0m" 500 -
+2025-10-06 16:31:09,208 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:31:09,208 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:31:09,208 INFO werkzeug  * Restarting with stat
+2025-10-06 16:31:09,424 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:31:09,426 INFO werkzeug  * Debugger PIN: 575-726-775
+2025-10-06 16:31:13,165 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:31:13] "[35m[1mPOST /users/register HTTP/1.1[0m" 500 -
+2025-10-06 16:33:31,289 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:33:31,289 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:33:31,290 INFO werkzeug  * Restarting with stat
+2025-10-06 16:33:31,507 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:33:31,508 INFO werkzeug  * Debugger PIN: 575-726-775
+2025-10-06 16:33:34,710 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:33:34] "[35m[1mPOST /users/register HTTP/1.1[0m" 500 -
+2025-10-06 16:35:11,665 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:35:11,665 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:35:11,665 INFO werkzeug  * Restarting with stat
+2025-10-06 16:35:11,891 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:35:11,892 INFO werkzeug  * Debugger PIN: 575-726-775
+2025-10-06 16:36:24,619 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:36:24,619 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:36:24,619 INFO werkzeug  * Restarting with stat
+2025-10-06 16:36:24,844 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:36:24,846 INFO werkzeug  * Debugger PIN: 575-726-775
+2025-10-06 16:36:28,113 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:36:28] "[35m[1mPOST /users/register HTTP/1.1[0m" 500 -
+2025-10-06 16:37:21,984 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/models/booktag.py', reloading
+2025-10-06 16:37:22,027 INFO werkzeug  * Restarting with stat
+2025-10-06 16:37:22,233 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:37:22,234 INFO werkzeug  * Debugger PIN: 575-726-775
+2025-10-06 16:38:13,357 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/models/book.py', reloading
+2025-10-06 16:38:13,398 INFO werkzeug  * Restarting with stat
+2025-10-06 16:38:13,605 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:38:13,607 INFO werkzeug  * Debugger PIN: 575-726-775
+2025-10-06 16:38:44,690 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/models/author.py', reloading
+2025-10-06 16:38:44,740 INFO werkzeug  * Restarting with stat
+2025-10-06 16:41:29,613 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:41:29,613 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:41:29,613 INFO werkzeug  * Restarting with stat
+2025-10-06 16:41:29,831 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:41:29,832 INFO werkzeug  * Debugger PIN: 575-726-775
+2025-10-06 16:42:26,300 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:42:26,300 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:42:26,301 INFO werkzeug  * Restarting with stat
+2025-10-06 16:42:26,514 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:42:26,515 INFO werkzeug  * Debugger PIN: 575-726-775
+2025-10-06 16:42:46,890 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:42:46] "GET /health HTTP/1.1" 200 -
+2025-10-06 16:43:04,668 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:43:04] "[35m[1mPOST /users/register HTTP/1.1[0m" 201 -
+2025-10-06 16:43:20,490 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:43:20] "GET /books HTTP/1.1" 200 -
+2025-10-06 16:43:20,559 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:43:20] "POST /users/login HTTP/1.1" 200 -
+2025-10-06 16:44:04,819 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:44:04] "[31m[1mPOST /users/register HTTP/1.1[0m" 409 -
+2025-10-06 16:44:15,442 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:44:15] "[31m[1mPOST /users/login HTTP/1.1[0m" 401 -
+2025-10-06 16:44:21,695 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:44:21] "[31m[1mPOST /users/register HTTP/1.1[0m" 409 -
+2025-10-06 16:46:32,913 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 16:46:32,913 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 16:46:32,913 INFO werkzeug  * Restarting with stat
+2025-10-06 16:46:33,117 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:46:33,120 INFO werkzeug  * Debugger PIN: 810-926-692
+2025-10-06 16:47:22,667 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:47:22] "[35m[1mPOST /users/login HTTP/1.1[0m" 500 -
+2025-10-06 16:47:30,844 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:47:30] "[35m[1mPOST /users/register HTTP/1.1[0m" 500 -
+2025-10-06 16:48:45,189 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:48:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-06 16:48:56,931 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:48:56] "GET /health HTTP/1.1" 200 -
+2025-10-06 16:48:58,509 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:48:58] "GET /health HTTP/1.1" 200 -
+2025-10-06 16:49:02,456 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:02] "GET /docs/ HTTP/1.1" 200 -
+2025-10-06 16:49:02,473 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:02] "GET /docs/swagger-ui.css HTTP/1.1" 200 -
+2025-10-06 16:49:02,474 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:02] "GET /docs/index.css HTTP/1.1" 200 -
+2025-10-06 16:49:02,474 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:02] "GET /docs/swagger-ui-bundle.js HTTP/1.1" 200 -
+2025-10-06 16:49:02,491 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:02] "GET /docs/swagger-ui-standalone-preset.js HTTP/1.1" 200 -
+2025-10-06 16:49:02,610 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:02] "GET /static/swagger.json HTTP/1.1" 200 -
+2025-10-06 16:49:02,631 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:02] "GET /docs/favicon-32x32.png HTTP/1.1" 200 -
+2025-10-06 16:49:04,059 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:04] "[33mGET / HTTP/1.1[0m" 404 -
+2025-10-06 16:49:04,156 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:04] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-06 16:49:07,448 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:07] "GET /docs/ HTTP/1.1" 200 -
+2025-10-06 16:49:07,461 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:07] "GET /docs/index.css HTTP/1.1" 200 -
+2025-10-06 16:49:07,464 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:07] "GET /docs/swagger-ui.css HTTP/1.1" 200 -
+2025-10-06 16:49:07,465 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:07] "GET /docs/swagger-ui-standalone-preset.js HTTP/1.1" 200 -
+2025-10-06 16:49:07,465 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:07] "GET /docs/swagger-ui-bundle.js HTTP/1.1" 200 -
+2025-10-06 16:49:07,554 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:07] "[36mGET /static/swagger.json HTTP/1.1[0m" 304 -
+2025-10-06 16:49:07,582 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:49:07] "GET /docs/favicon-32x32.png HTTP/1.1" 200 -
+2025-10-06 16:50:14,752 INFO werkzeug 127.0.0.1 - - [06/Oct/2025 16:50:14] "[35m[1mPOST /users/login HTTP/1.1[0m" 500 -
+2025-10-06 16:52:28,759 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/__init__.py', reloading
+2025-10-06 16:52:28,829 INFO werkzeug  * Restarting with stat
+2025-10-06 16:52:29,057 WARNING werkzeug  * Debugger is active!
+2025-10-06 16:52:29,058 INFO werkzeug  * Debugger PIN: 810-926-692
+2025-10-06 17:00:33,915 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 17:00:33,915 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 17:00:33,915 INFO werkzeug  * Restarting with stat
+2025-10-06 17:00:34,138 WARNING werkzeug  * Debugger is active!
+2025-10-06 17:00:34,139 INFO werkzeug  * Debugger PIN: 492-947-861
+2025-10-06 17:01:11,175 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 17:01:11,175 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 17:02:08,224 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-06 17:02:08,224 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-06 17:02:08,225 INFO werkzeug  * Restarting with stat
+2025-10-06 17:02:08,436 WARNING werkzeug  * Debugger is active!
+2025-10-06 17:02:08,437 INFO werkzeug  * Debugger PIN: 492-947-861

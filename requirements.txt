@@ -2,10 +2,13 @@ Flask
 Flask-SQLAlchemy
 Flask-JWT-Extended
 Flask-Migrate
+Flask-Swagger-UI
 Werkzeug
+psycopg2-binary
 pytest
 alembic
 bcrypt
+python-dotenv
 argon2-cffi
 requests
 robotframework
