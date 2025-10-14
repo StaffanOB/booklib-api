@@ -2,6 +2,7 @@
 Database connection utilities with graceful error handling
 """
 import logging
+import socket
 from functools import wraps
 from flask import jsonify
 from sqlalchemy.exc import OperationalError, DatabaseError
@@ -65,6 +66,7 @@ def get_health_status():
     
     status = {
         'status': 'healthy' if db_connected else 'degraded',
+        'server': socket.gethostname(),
         'database': {
             'connected': db_connected,
             'error': db_error if not db_connected else None
