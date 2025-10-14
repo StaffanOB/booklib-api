@@ -11,7 +11,15 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploy stage (customize for your environment)'
+              sshagent(['deploy-key']) {
+                sh '''
+                  ssh -o StrictHostKeyChecking=no deploy@192.168.1.175 '
+                    cd /opt/booklib &&
+                    docker compose pull &&
+                    docker compose up -d
+                  '
+                '''
+              }
             }
         }
     }
