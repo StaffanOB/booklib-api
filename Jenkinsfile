@@ -69,10 +69,10 @@ pipeline {
                             fi
                             
                             # Stop old containers
-                            docker compose -f docker-compose.yml down || true
+                            docker compose -f ${DEPLOY_PATH}/docker-compose.yml down || true
                             
                             # Start new containers
-                            docker compose -f docker-compose.yml --env-file .env.test up -d
+                            docker compose -f ${DEPLOY_PATH}/docker-compose.yml --env-file ${DEPLOY_PATH}/.env.test up -d
                             
                             # Wait for API to be healthy
                             echo "Waiting for API to be healthy..."
