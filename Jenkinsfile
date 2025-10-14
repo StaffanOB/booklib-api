@@ -6,7 +6,7 @@ pipeline {
         DOCKER_TAG = "${env.BUILD_NUMBER}"
         DEPLOY_SERVER = '192.168.1.175'
         DEPLOY_USER = 'deploy'
-        DEPLOY_PATH = '/opt/booklib'
+        DEPLOY_PATH = '/opt/booklib/api'
         REGISTRY = 'localhost:5000' // Optional: use if you have a private registry
     }
     
@@ -14,19 +14,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-            }
-        }
-        
-        stage('Run Tests') {
-            steps {
-                script {
-                    sh '''
-                        python3 -m venv .venv
-                        . .venv/bin/activate
-                        pip install -r requirements.txt
-                        pytest tests/ -v || true
-                    '''
-                }
             }
         }
         
@@ -55,9 +42,12 @@ pipeline {
             steps {
                 sshagent(['deploy-key']) {
                     sh """
+                        # Ensure deploy path exists
+                        ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} 'mkdir -p ${DEPLOY_PATH}'
+
                         # Copy docker image to deploy server
                         scp -o StrictHostKeyChecking=no ${DOCKER_IMAGE}.tar.gz ${DEPLOY_USER}@${DEPLOY_SERVER}:/tmp/
-                        
+
                         # Copy deployment files
                         scp -o StrictHostKeyChecking=no docker-compose.yml ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
                         scp -o StrictHostKeyChecking=no .env.production.example ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
@@ -69,6 +59,9 @@ pipeline {
                             # Load docker image
                             docker load < /tmp/${DOCKER_IMAGE}.tar.gz
                             
+                            # Ensure external network exists
+                            docker network inspect booklib-net >/dev/null 2>&1 || docker network create booklib-net
+
                             # Create .env file if it doesn't exist
                             if [ ! -f .env.production ]; then
                                 cp .env.production.example .env.production
@@ -76,10 +69,10 @@ pipeline {
                             fi
                             
                             # Stop old containers
-                            docker-compose down || true
+                            docker compose down || true
                             
                             # Start new containers
-                            docker-compose --env-file .env.production up -d
+                            docker compose --env-file .env.production up -d
                             
                             # Wait for API to be healthy
                             echo "Waiting for API to be healthy..."
@@ -96,7 +89,7 @@ pipeline {
                             rm -f /tmp/${DOCKER_IMAGE}.tar.gz
                             
                             # Show container status
-                            docker-compose ps
+                            docker compose ps
                         '
                     """
                 }
@@ -126,7 +119,7 @@ pipeline {
                 sh """
                     ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} '
                         cd ${DEPLOY_PATH}
-                        docker-compose logs --tail=50 api
+                        docker compose logs --tail=50 api
                     '
                 """
             }

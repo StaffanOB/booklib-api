@@ -14,9 +14,15 @@ services:
       SECRET_KEY: ${SECRET_KEY:-please_change_this_secret_key}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY:-please_change_this_jwt_secret}
       DEBUG: ${DEBUG:-false}
+    networks:
+      - booklib-net
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+
+networks:
+  booklib-net:
+    external: true
