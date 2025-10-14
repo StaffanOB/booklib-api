@@ -37,16 +37,7 @@ pipeline {
                 }
             }
         }
-       stage('Debug Workspace') {
-    steps {
-        sh '''
-            echo "Before: Current working directory:"
-            pwd
-            echo "Listing all files in workspace:"
-            ls -la
-        '''
-    }
-} 
+        
         stage('Deploy to Server') {
             steps {
                 sshagent(['deploy-key']) {
@@ -104,17 +95,6 @@ pipeline {
                 }
             }
         }
-        
-        stage('Debug Workspace') {
-    steps {
-        sh '''
-            echo "Current working directory:"
-            pwd
-            echo "Listing all files in workspace:"
-            ls -la
-        '''
-    }
-}
         
         stage('Health Check') {
             steps {
