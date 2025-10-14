@@ -992,3 +992,132 @@
 2025-10-08 21:11:29,853 INFO werkzeug  * Restarting with stat
 2025-10-08 21:11:30,071 WARNING werkzeug  * Debugger is active!
 2025-10-08 21:11:30,073 INFO werkzeug  * Debugger PIN: 316-423-650
+2025-10-08 21:14:34,404 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/tests/unit/test_book.py', reloading
+2025-10-08 21:14:34,445 INFO werkzeug  * Restarting with stat
+2025-10-08 21:14:34,660 WARNING werkzeug  * Debugger is active!
+2025-10-08 21:14:34,661 INFO werkzeug  * Debugger PIN: 316-423-650
+2025-10-08 21:23:07,593 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/tests/api/test_books_api.py', reloading
+2025-10-08 21:23:07,638 INFO werkzeug  * Restarting with stat
+2025-10-08 21:23:07,856 WARNING werkzeug  * Debugger is active!
+2025-10-08 21:23:07,858 INFO werkzeug  * Debugger PIN: 316-423-650
+2025-10-08 21:36:08,296 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-08 21:36:08,296 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-08 21:36:08,297 INFO werkzeug  * Restarting with stat
+2025-10-08 21:36:08,506 WARNING werkzeug  * Debugger is active!
+2025-10-08 21:36:08,507 INFO werkzeug  * Debugger PIN: 316-423-650
+2025-10-08 21:36:11,586 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 21:36:11] "[35m[1mGET /books HTTP/1.1[0m" 500 -
+2025-10-08 21:37:41,451 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-08 21:37:41,451 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-08 21:37:45,165 ERROR app Exception on /books [GET]
+Traceback (most recent call last):
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "books" does not exist
+LINE 2: FROM books
+             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/app/routes/books.py", line 31, in get_books
+    books = Book.query.all()
+            ^^^^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/staffan/develop/projekts/booklib/booklib-api/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "books" does not exist
+LINE 2: FROM books
+             ^
+
+[SQL: SELECT books.id AS books_id, books.title AS books_title, books.isbn AS books_isbn, books.description AS books_description, books.publication_date AS books_publication_date, books.publish_year AS books_publish_year, books.series AS books_series, books.cover_url AS books_cover_url, books.page_count AS books_page_count, books.language AS books_language, books.created_at AS books_created_at, books.updated_at AS books_updated_at 
+FROM books]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-08 21:37:45,167 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 21:37:45] "[35m[1mGET /books HTTP/1.1[0m" 500 -
+2025-10-08 21:38:15,320 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-08 21:38:15,320 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-08 21:38:15,320 INFO werkzeug  * Restarting with stat
+2025-10-08 21:38:15,528 WARNING werkzeug  * Debugger is active!
+2025-10-08 21:38:15,530 INFO werkzeug  * Debugger PIN: 316-423-650
+2025-10-08 21:38:18,098 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 21:38:18] "[35m[1mGET /books HTTP/1.1[0m" 500 -
+2025-10-08 21:38:58,161 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-08 21:38:58,162 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-08 21:38:58,162 INFO werkzeug  * Restarting with stat
+2025-10-08 21:38:58,369 WARNING werkzeug  * Debugger is active!
+2025-10-08 21:38:58,370 INFO werkzeug  * Debugger PIN: 316-423-650
+2025-10-08 21:39:00,700 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 21:39:00] "[35m[1mGET /books HTTP/1.1[0m" 500 -
+2025-10-08 21:41:32,598 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 21:41:32] "GET /books HTTP/1.1" 200 -
+2025-10-08 21:43:01,699 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 21:43:01] "GET /books HTTP/1.1" 200 -
+2025-10-08 22:22:02,378 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:22:02] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:22:02,379 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:22:02] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:22:02,385 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:22:02] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:22:02,387 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:22:02] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:22:02,388 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:22:02] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:22:02,388 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:22:02] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:22:20,801 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:22:20] "[31m[1mPOST /users/login HTTP/1.1[0m" 401 -
+2025-10-08 22:22:34,501 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:22:34] "[35m[1mPOST /users/register HTTP/1.1[0m" 201 -
+2025-10-08 22:22:41,289 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:22:41] "POST /users/login HTTP/1.1" 200 -
+2025-10-08 22:22:52,030 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:22:52] "[35m[1mPOST /books HTTP/1.1[0m" 201 -
+2025-10-08 22:23:14,824 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:23:14] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:23:14,825 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:23:14] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:23:14,826 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:23:14] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:23:14,827 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:23:14] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:23:14,828 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:23:14] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:23:14,829 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:23:14] "[33mGET /api/books HTTP/1.1[0m" 404 -
+2025-10-08 22:23:36,698 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:23:36] "[33mOPTIONS /api/books HTTP/1.1[0m" 404 -
