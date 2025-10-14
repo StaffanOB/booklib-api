@@ -11,12 +11,6 @@ pipeline {
     }
     
     stages {
- //       stage('Checkout') {
- //           steps {
- //               checkout scm
- //           }
- //       }
-        
         stage('Build Docker Image') {
             steps {
                 script {
@@ -37,105 +31,49 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy to Server') {
-    steps {
-        sshagent(['deploy-key']) {
-            script {
-                sh """
-                    set -e
-                    cd ${WORKSPACE}
-                    echo "Current workspace:"
-                    pwd
-                    ls -la
+            steps {
+                sshagent(['deploy-key']) {
+                    script {
+                        sh """
+                            set -e
+                            cd ${WORKSPACE}
+                            echo "Current workspace:"
+                            pwd
+                            ls -la
 
-                    # Ensure deploy path exists
-                    ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} 'mkdir -p ${DEPLOY_PATH}'
+                            # Ensure deploy path exists
+                            ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} 'mkdir -p ${DEPLOY_PATH}'
 
-                    echo "Copying image and deployment files..."
-                    scp -o StrictHostKeyChecking=no ${WORKSPACE}/${DOCKER_IMAGE}.tar.gz ${DEPLOY_USER}@${DEPLOY_SERVER}:/tmp/
-                    scp -o StrictHostKeyChecking=no ${WORKSPACE}/docker-compose.yml ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
-                    scp -o StrictHostKeyChecking=no ${WORKSPACE}/.env.test.example ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
+                            echo "Copying image and deployment files..."
+                            scp -o StrictHostKeyChecking=no ${WORKSPACE}/${DOCKER_IMAGE}.tar.gz ${DEPLOY_USER}@${DEPLOY_SERVER}:/tmp/
+                            scp -o StrictHostKeyChecking=no ${WORKSPACE}/docker-compose.yml ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
+                            scp -o StrictHostKeyChecking=no ${WORKSPACE}/.env.test.example ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
 
-                    echo "Running deployment commands on server..."
-                    ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} '
-                        set +e
-                        cd ${DEPLOY_PATH}
+                            echo "Running deployment commands on server..."
+                            ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} '
+                                set +e
+                                cd ${DEPLOY_PATH}
 
-                        docker load < /tmp/${DOCKER_IMAGE}.tar.gz
-                        docker network inspect booklib-net >/dev/null 2>&1 || docker network create booklib-net
+                                docker load < /tmp/${DOCKER_IMAGE}.tar.gz
+                                docker network inspect booklib-net >/dev/null 2>&1 || docker network create booklib-net
 
-                        if [ ! -f .env.test ]; then
-                            cp .env.test.example .env.test
-                            echo "WARNING: Created .env.test from example"
-                        fi
+                                if [ ! -f .env.test ]; then
+                                    cp .env.test.example .env.test
+                                    echo "WARNING: Created .env.test from example"
+                                fi
 
-                        docker compose -f docker-compose.yml down || true
-                        docker compose --env-file .env.test up -d || true
-                        docker compose ps || true
-                        exit 0
-                    '
-                """
+                                docker compose -f docker-compose.yml down || true
+                                docker compose --env-file .env.test up -d || true
+                                docker compose ps || true
+                                exit 0
+                            '
+                        """
+                    }
+                }
             }
         }
-    }
-}
-        //stage('Deploy to Server') {
-            //steps {
-                //sshagent(['deploy-key']) {
-                    //sh """
-                        //# Ensure deploy path exists
-                        //ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} 'mkdir -p ${DEPLOY_PATH}'
-
-                        //# Copy docker image to deploy server
-                        //scp -o StrictHostKeyChecking=no ${DOCKER_IMAGE}.tar.gz ${DEPLOY_USER}@${DEPLOY_SERVER}:/tmp/
-
-                        //# Copy deployment files
-                        //scp -o StrictHostKeyChecking=no docker-compose.yml ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
-                        //scp -o StrictHostKeyChecking=no .env.test.example ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
-                        
-                        //# Deploy on remote server
-                        //ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} '
-                            //cd ${DEPLOY_PATH}
-                            
-                            //# Load docker image
-                            //docker load < /tmp/${DOCKER_IMAGE}.tar.gz
-                            
-                            //# Ensure external network exists
-                            //docker network inspect booklib-net >/dev/null 2>&1 || docker network create booklib-net
-
-                            //# Create .env file if it doesn't exist
-                            //if [ ! -f .env.test ]; then
-                                //cp .env.test.example .env.test
-                                //echo "WARNING: Please update .env.test with secure credentials!"
-                            //fi
-                            
-                            //# Stop old containers
-                            //docker compose -f ${DEPLOY_PATH}/docker-compose.yml down || true
-                            
-                            //# Start new containers
-                            //docker compose -f ${DEPLOY_PATH}/docker-compose.yml --env-file ${DEPLOY_PATH}/.env.test up -d
-                            
-                            //# Wait for API to be healthy
-                            //echo "Waiting for API to be healthy..."
-                            //for i in {1..30}; do
-                                //if curl -f http://localhost:5000/health; then
-                                    //echo "API is healthy!"
-                                    //break
-                                //fi
-                                //echo "Attempt \$i: API not ready yet..."
-                                //sleep 2
-                            //done
-                            
-                            //# Cleanup
-                            //rm -f /tmp/${DOCKER_IMAGE}.tar.gz
-                            
-                            //# Show container status
-                            //docker compose ps
-                        //'
-                    //"""
-                //}
-            //}
-        //}
         
         stage('Health Check') {
             steps {
