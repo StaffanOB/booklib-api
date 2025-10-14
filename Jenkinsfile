@@ -50,7 +50,7 @@ pipeline {
 
                         # Copy deployment files
                         scp -o StrictHostKeyChecking=no docker-compose.yml ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
-                        scp -o StrictHostKeyChecking=no .env.production.example ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
+                        scp -o StrictHostKeyChecking=no .env.test.example ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
                         
                         # Deploy on remote server
                         ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} '
@@ -63,16 +63,16 @@ pipeline {
                             docker network inspect booklib-net >/dev/null 2>&1 || docker network create booklib-net
 
                             # Create .env file if it doesn't exist
-                            if [ ! -f .env.production ]; then
-                                cp .env.production.example .env.production
-                                echo "WARNING: Please update .env.production with secure credentials!"
+                            if [ ! -f .env.test ]; then
+                                cp .env.test.example .env.test
+                                echo "WARNING: Please update .env.test with secure credentials!"
                             fi
                             
                             # Stop old containers
                             docker compose down || true
                             
                             # Start new containers
-                            docker compose --env-file .env.production up -d
+                            docker compose --env-file .env.test up -d
                             
                             # Wait for API to be healthy
                             echo "Waiting for API to be healthy..."
