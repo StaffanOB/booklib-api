@@ -81,7 +81,7 @@ pipeline {
                                     echo "API is healthy!"
                                     break
                                 fi
-                                echo "Attempt $i: API not ready yet..."
+                                echo "Attempt \$i: API not ready yet..."
                                 sleep 2
                             done
                             
