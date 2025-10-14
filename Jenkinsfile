@@ -119,7 +119,7 @@ pipeline {
                 sh """
                     ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} '
                         cd ${DEPLOY_PATH}
-                        docker compose logs --tail=50 api
+                        docker compose logs --tail=50 api || true
                     '
                 """
             }
