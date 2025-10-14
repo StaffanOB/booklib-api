@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   api:
     image: booklib-api:latest
@@ -9,7 +7,7 @@ services:
       - "5000:5000"
     environment:
       # External PostgreSQL database connection
-      DATABASE_URL: ${DATABASE_URL:-postgresql://booklib_user:change_password@your-db-host:5432/booklib_prod}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://booklib_user:test_password@booklib-db:5432/booklib_test}
       FLASK_ENV: ${FLASK_ENV:-production}
       SECRET_KEY: ${SECRET_KEY:-please_change_this_secret_key}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY:-please_change_this_jwt_secret}
