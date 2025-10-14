@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app import db
 from app.models import Book, Comment, Rating, Author
+from app.db_utils import handle_db_errors
 import logging
 import os
 
@@ -22,6 +23,7 @@ logging.basicConfig(
 )
 
 @books_bp.route('/books', methods=['GET'])
+@handle_db_errors
 def get_books():
     """Get all books
     ---
@@ -41,6 +43,7 @@ def get_books():
     ]), 200
 
 @books_bp.route('/books/<int:id>/full', methods=['GET'])
+@handle_db_errors
 def get_book_full(id):
     """Get book info, ratings, and comments
     ---

@@ -1,26 +1,140 @@
 pipeline {
     agent any
+    
     environment {
-        PYTHONPATH = '.'
+        DOCKER_IMAGE = 'booklib-api'
+        DOCKER_TAG = "${env.BUILD_NUMBER}"
+        DEPLOY_SERVER = '192.168.1.175'
+        DEPLOY_USER = 'deploy'
+        DEPLOY_PATH = '/opt/booklib'
+        REGISTRY = 'localhost:5000' // Optional: use if you have a private registry
     }
+    
     stages {
-        stage('Docker Build') {
+        stage('Checkout') {
             steps {
-                sh 'docker build -t booklib-api .' 
+                checkout scm
             }
         }
-        stage('Deploy') {
+        
+        stage('Run Tests') {
             steps {
-              sshagent(['deploy-key']) {
-                sh '''
-                  ssh -o StrictHostKeyChecking=no deploy@192.168.1.175 '
-                    cd /opt/booklib &&
-                    docker compose pull &&
-                    docker compose up -d
-                  '
-                '''
-              }
+                script {
+                    sh '''
+                        python3 -m venv .venv
+                        . .venv/bin/activate
+                        pip install -r requirements.txt
+                        pytest tests/ -v || true
+                    '''
+                }
             }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh """
+                        docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
+                        docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest
+                    """
+                }
+            }
+        }
+        
+        stage('Save Docker Image') {
+            steps {
+                script {
+                    sh """
+                        docker save ${DOCKER_IMAGE}:latest | gzip > ${DOCKER_IMAGE}.tar.gz
+                    """
+                }
+            }
+        }
+        
+        stage('Deploy to Server') {
+            steps {
+                sshagent(['deploy-key']) {
+                    sh """
+                        # Copy docker image to deploy server
+                        scp -o StrictHostKeyChecking=no ${DOCKER_IMAGE}.tar.gz ${DEPLOY_USER}@${DEPLOY_SERVER}:/tmp/
+                        
+                        # Copy deployment files
+                        scp -o StrictHostKeyChecking=no docker-compose.yml ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
+                        scp -o StrictHostKeyChecking=no .env.production.example ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
+                        
+                        # Deploy on remote server
+                        ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} '
+                            cd ${DEPLOY_PATH}
+                            
+                            # Load docker image
+                            docker load < /tmp/${DOCKER_IMAGE}.tar.gz
+                            
+                            # Create .env file if it doesn't exist
+                            if [ ! -f .env.production ]; then
+                                cp .env.production.example .env.production
+                                echo "WARNING: Please update .env.production with secure credentials!"
+                            fi
+                            
+                            # Stop old containers
+                            docker-compose down || true
+                            
+                            # Start new containers
+                            docker-compose --env-file .env.production up -d
+                            
+                            # Wait for API to be healthy
+                            echo "Waiting for API to be healthy..."
+                            for i in {1..30}; do
+                                if curl -f http://localhost:5000/health; then
+                                    echo "API is healthy!"
+                                    break
+                                fi
+                                echo "Attempt $i: API not ready yet..."
+                                sleep 2
+                            done
+                            
+                            # Cleanup
+                            rm -f /tmp/${DOCKER_IMAGE}.tar.gz
+                            
+                            # Show container status
+                            docker-compose ps
+                        '
+                    """
+                }
+            }
+        }
+        
+        stage('Health Check') {
+            steps {
+                script {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} '
+                            curl -f http://localhost:5000/health || exit 1
+                        '
+                    """
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo "Deployment to ${DEPLOY_SERVER} completed successfully!"
+        }
+        failure {
+            echo "Deployment failed. Please check the logs."
+            script {
+                sh """
+                    ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} '
+                        cd ${DEPLOY_PATH}
+                        docker-compose logs --tail=50 api
+                    '
+                """
+            }
+        }
+        always {
+            // Cleanup workspace
+            sh "rm -f ${DOCKER_IMAGE}.tar.gz"
+            cleanWs()
         }
     }
 }

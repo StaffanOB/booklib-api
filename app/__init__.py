@@ -18,7 +18,8 @@ def create_app():
     
     @app.route("/health")
     def health_check():
-        return {"status": "healthy", "message": "BookLib API is running"}
+        from app.db_utils import get_health_status
+        return get_health_status()
     
     from app.routes import users_bp, books_bp, tags_bp, comments_bp, ratings_bp, plugins_bp, protected_bp
     app.register_blueprint(users_bp)
