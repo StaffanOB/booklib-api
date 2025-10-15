@@ -1,244 +1,177 @@
 # BookLib API
 
-A lightweight REST API for managing books, users, tags, comments, ratings, and plugins.
+A Flask-based REST API for managing a book library system with user authentication, reviews, ratings, comments, tags, and external plugin integrations.
 
-## Features
-- User registration/login (JWT)
-- CRUD for books, tags, comments, ratings
-- Plugin architecture
-- Swagger/OpenAPI docs
-- Docker & Jenkins ready
+## ✨ Features
 
-## 🚀 Local Development Guide
+- **User Management**: Registration, login with JWT authentication
+- **Book Management**: Full CRUD operations for books with author information
+- **Reviews & Ratings**: Users can write reviews with reading format (paperback, audiobook, ebook) and rate books
+- **Comments**: Threaded commenting system on books
+- **Tags**: Organize books with custom tags
+- **Plugin Architecture**: Extensible plugin system for integrating external book services (Goodreads, Google Books)
+- **API Documentation**: Interactive Swagger/OpenAPI documentation
+- **Database Migrations**: Alembic-based schema versioning
+- **Production Ready**: Docker containerization with Jenkins CI/CD pipeline
 
-**For detailed local development setup instructions, see [README_DEV.md](README_DEV.md)**
+## � Documentation
 
-## Quick Start for Local Development
+- **[README_DEV.md](README_DEV.md)** - Complete local development setup guide
+- **[README_DEPLOYMENT.md](README_DEPLOYMENT.md)** - Production deployment with Docker and Jenkins
 
-### Prerequisites
-- Python 3.11+
-- Docker and Docker Compose (for database)
-- Git
+## 🚀 Quick Start
 
-### 1. Setup Development Environment
+### Local Development
+
 ```bash
-# Clone all related repositories
+# 1. Clone and setup
 git clone https://github.com/StaffanOB/booklib-api.git
-git clone https://github.com/StaffanOB/booklib-db.git
 cd booklib-api
-
-# Create Python virtual environment
 python3 -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-
-# Install dependencies
+source .venv/bin/activate
 pip install -r requirements.txt
-```
 
-### 2. Start Database Services
-```bash
-# Start the database (from booklib-db repository)
-cd ../booklib-db
-./scripts/setup.sh
+# 2. Configure environment
+cp .env.example .env
+# Edit .env with your database settings
 
-# Or start manually
-docker-compose up -d db
-
-# Wait for database to be ready
-./scripts/wait-for-db.sh
-```
-
-### 3. Configure Environment
-```bash
-cd ../booklib-api
-
-# Create .env file for local development
-cat > .env << EOF
-# Database Configuration
-DATABASE_URL=postgresql://booklib_user:dev_password@localhost:5432/booklib_dev
-
-# Application Configuration  
-FLASK_ENV=development
-DEBUG=true
-SECRET_KEY=dev-secret-key
-
-# JWT Configuration
-JWT_SECRET_KEY=dev-jwt-secret
-
-# Optional: External Services
-REDIS_URL=redis://localhost:6379/0
-EOF
-```
-
-### 4. Initialize Database
-```bash
-# Run database migrations
+# 3. Run migrations
 alembic upgrade head
 
-# Load sample data (optional)
-python -c "
-from app import create_app, db
-from app.models import User, Book, Tag
-
-app = create_app()
-with app.app_context():
-    # Create sample user
-    user = User(username='dev', email='dev@booklib.com')
-    user.set_password('password')
-    db.session.add(user)
-    
-    # Create sample book
-    book = Book(title='Sample Book', author='Dev Author', description='A sample book for development')
-    db.session.add(book)
-    
-    db.session.commit()
-    print('Sample data created!')
-"
-```
-
-### 5. Run the API
-```bash
-# Start the development server
+# 4. Start the API
 python app/main.py
-
-# Or with hot reload
-export FLASK_APP=app.main:app
-export FLASK_ENV=development
-flask run --host=0.0.0.0 --port=5000
 ```
 
-### 6. Access the API
-- **API Base URL**: http://localhost:5000
-- **API Documentation**: http://localhost:5000/docs
-- **Health Check**: http://localhost:5000/health
+Visit http://localhost:5000/docs for interactive API documentation.
 
-### 7. Development Workflow
+**For detailed setup instructions, see [README_DEV.md](README_DEV.md)**
+
+### Production Deployment
+
+The API includes automated deployment via Jenkins to a standalone Docker container with PostgreSQL.
+
+**For complete deployment guide, see [README_DEPLOYMENT.md](README_DEPLOYMENT.md)**
+
+## 🏗️ Architecture
+
+```
+booklib-api/
+├── app/
+│   ├── models/          # SQLAlchemy database models
+│   │   ├── user.py
+│   │   ├── book.py
+│   │   ├── review.py    # New: Reviews with reading format
+│   │   ├── rating.py
+│   │   ├── comment.py
+│   │   └── tag.py
+│   ├── routes/          # API endpoint handlers
+│   │   ├── users.py
+│   │   ├── books.py
+│   │   ├── reviews.py   # New: Review management
+│   │   ├── ratings.py
+│   │   ├── comments.py
+│   │   ├── tags.py
+│   │   └── plugins.py
+│   ├── plugins/         # External service integrations
+│   └── static/          # Swagger specification
+├── migrations/          # Alembic database migrations
+├── tests/              # Pytest test suite
+├── Dockerfile          # Production container image
+├── docker-compose.yml  # Standalone deployment config
+└── Jenkinsfile         # CI/CD pipeline
+
+```
+
+## 🔌 API Endpoints
+
+### Authentication
+
+- `POST /users/register` - Register new user
+- `POST /users/login` - Login and get JWT token
+
+### Books
+
+- `GET /books` - List all books
+- `POST /books` - Create book (authenticated)
+- `GET /books/{id}` - Get book details
+- `PUT /books/{id}` - Update book (authenticated)
+- `DELETE /books/{id}` - Delete book (authenticated)
+
+### Reviews
+
+- `GET /reviews` - List all reviews
+- `POST /reviews` - Create review (authenticated)
+- `GET /reviews/{id}` - Get review details
+- `GET /reviews/book/{book_id}` - Get reviews for a book
+- `GET /reviews/user/{user_id}` - Get reviews by user
+- `PUT /reviews/{id}` - Update review (authenticated)
+- `DELETE /reviews/{id}` - Delete review (authenticated)
+
+### Ratings, Comments, Tags
+
+- Full CRUD operations available
+- See `/docs` endpoint for complete API reference
+
+## 🧪 Testing
+
 ```bash
-# Run tests
-pytest tests/
-
-# Run specific test file
-pytest tests/unit/test_books.py -v
+# Run all tests
+pytest
 
 # Run with coverage
 pytest --cov=app tests/
 
-# Lint code
-flake8 app/
-
-# Format code
-black app/
+# Run specific test suite
+pytest tests/unit/
+pytest tests/integration/
 ```
 
-## Integration with Other Services
+## 🛠️ Technology Stack
 
-### Database Integration
-This API requires the `booklib-db` service:
-```bash
-# Make sure database is running
-cd ../booklib-db && docker-compose ps
+- **Framework**: Flask 3.0+
+- **Database**: PostgreSQL with SQLAlchemy ORM
+- **Authentication**: JWT (PyJWT)
+- **Migrations**: Alembic
+- **API Documentation**: Swagger/OpenAPI
+- **Testing**: Pytest
+- **Containerization**: Docker
+- **CI/CD**: Jenkins
+- **WSGI Server**: Gunicorn
 
-# If not running, start it
-docker-compose up -d db
-```
+## 📊 Database Schema
 
-### Testing Integration  
-Run tests against your local API:
-```bash
-# From booklib-tests repository
-cd ../booklib-tests
-robot --variable BASE_URL:http://localhost:5000 robot/api/
-```
+The API uses PostgreSQL with the following main tables:
 
-## Environment Variables
+- `users` - User accounts and authentication
+- `books` - Book catalog with titles and authors
+- `reviews` - User reviews with reading format tracking
+- `ratings` - Numerical ratings (1-5 stars)
+- `comments` - User comments on books
+- `tags` - Book categorization tags
+- `book_tags` - Many-to-many relationship
 
-| Variable | Description | Default | Required |
-|----------|-------------|---------|----------|
-| `DATABASE_URL` | PostgreSQL connection string | `sqlite:///booklib.db` | Yes |
-| `SECRET_KEY` | Flask secret key | None | Yes |
-| `JWT_SECRET_KEY` | JWT signing secret | None | Yes |
-| `FLASK_ENV` | Flask environment | `production` | No |
-| `DEBUG` | Enable debug mode | `false` | No |
-| `REDIS_URL` | Redis connection string | None | No |
+## 🔐 Environment Variables
 
-## Docker Development
+| Variable         | Description                          | Required |
+| ---------------- | ------------------------------------ | -------- |
+| `DATABASE_URL`   | PostgreSQL connection string         | Yes      |
+| `SECRET_KEY`     | Flask secret key                     | Yes      |
+| `JWT_SECRET_KEY` | JWT token signing key                | Yes      |
+| `FLASK_ENV`      | Environment (development/production) | No       |
+| `DEBUG`          | Enable debug mode                    | No       |
 
-### Build and Run with Docker
-```bash
-# Build Docker image
-docker build -t booklib-api:dev .
+## 📝 License
 
-# Run with database
-docker-compose -f ../booklib-deployment/docker-compose.yml up -d
+This project is part of the BookLib ecosystem.
 
-# Or run API only (requires external database)
-docker run -p 5000:5000 \
-  -e DATABASE_URL=postgresql://booklib_user:dev_password@host.docker.internal:5432/booklib_dev \
-  booklib-api:dev
-```
+## 🤝 Related Repositories
 
-## Troubleshooting
-
-### Database Connection Issues
-```bash
-# Check if database is running
-docker ps | grep postgres
-
-# Test database connection
-python -c "
-import psycopg2
-try:
-    conn = psycopg2.connect('postgresql://booklib_user:dev_password@localhost:5432/booklib_dev')
-    print('✅ Database connection successful')
-    conn.close()
-except Exception as e:
-    print(f'❌ Database connection failed: {e}')
-"
-```
-
-### Migration Issues
-```bash
-# Check migration status
-alembic current
-
-# Show migration history  
-alembic history
-
-# Reset database (⚠️ destroys data)
-alembic downgrade base
-alembic upgrade head
-```
-
-### Import/Module Issues
-```bash
-# Check Python path
-python -c "import sys; print('\n'.join(sys.path))"
-
-# Install in development mode
-pip install -e .
-```
-
-### 2. View Swagger/OpenAPI docs
-Visit: [http://127.0.0.1:5000/docs](http://127.0.0.1:5000/docs)
-
-## Docker
-
-### Build and run with Docker
-```bash
-docker build -t booklib-api .
-docker run -p 5000:5000 booklib-api
-```
-
-## Testing
-
-### Run unit tests
-```bash
-pytest tests/
-```
-
-## CI/CD
-
-Jenkins pipeline is defined in `Jenkinsfile`.
+- **booklib-db** - Database setup and initialization
+- **booklib-tests** - Robot Framework integration tests
 
 ---
-For more details, see `prd.md`.
+
+For detailed information:
+
+- Development setup: [README_DEV.md](README_DEV.md)
+- Production deployment: [README_DEPLOYMENT.md](README_DEPLOYMENT.md)

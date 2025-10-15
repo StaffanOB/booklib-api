@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app import db
-from app.models import Book, Comment, Rating, Author
+from app.models import Book, Comment, Rating, Author, Review
 from app.db_utils import handle_db_errors
 import logging
 import os
@@ -45,7 +45,7 @@ def get_books():
 @books_bp.route('/books/<int:id>/full', methods=['GET'])
 @handle_db_errors
 def get_book_full(id):
-    """Get book info, ratings, and comments
+    """Get book info, ratings, comments, and reviews
     ---
     tags:
       - Books
@@ -53,9 +53,12 @@ def get_book_full(id):
     book = Book.query.get_or_404(id)
     ratings = Rating.query.filter_by(book_id=id).all()
     comments = Comment.query.filter_by(book_id=id).all()
+    reviews = Review.query.filter_by(book_id=id).all()
+    
     avg_rating = None
     if ratings:
         avg_rating = sum(r.rating for r in ratings) / len(ratings)
+    
     return jsonify({
         'id': book.id,
         'title': book.title,
@@ -66,7 +69,8 @@ def get_book_full(id):
         'cover_url': book.cover_url,
         'average_rating': avg_rating,
         'ratings': [{'id': r.id, 'user_id': r.user_id, 'rating': r.rating} for r in ratings],
-        'comments': [{'id': c.id, 'user_id': c.user_id, 'content': c.content} for c in comments]
+        'comments': [{'id': c.id, 'user_id': c.user_id, 'content': c.content} for c in comments],
+        'reviews': [r.to_dict() for r in reviews]
     }), 200
 
 

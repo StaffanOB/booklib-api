@@ -571,14 +571,14 @@
     "/books/{id}/full": {
       "get": {
         "tags": ["Books"],
-        "summary": "Get book info, ratings, and comments",
-        "description": "Returns book information, average rating, all ratings, and all comments for the specified book.",
+        "summary": "Get book info, ratings, comments, and reviews",
+        "description": "Returns book information, average rating, all ratings, comments, and reviews for the specified book.",
         "parameters": [
           {"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}
         ],
         "responses": {
           "200": {
-            "description": "Book info, ratings, and comments",
+            "description": "Book info, ratings, comments, and reviews",
             "content": {
               "application/json": {
                 "schema": {
@@ -590,6 +590,7 @@
                     "description": {"type": "string"},
                     "publish_year": {"type": ["integer", "null"]},
                     "series": {"type": ["string", "null"]},
+                    "cover_url": {"type": ["string", "null"]},
                     "average_rating": {"type": ["number", "null"]},
                     "ratings": {
                       "type": "array",
@@ -611,6 +612,12 @@
                           "user_id": {"type": "integer"},
                           "content": {"type": "string"}
                         }
+                      }
+                    },
+                    "reviews": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Review"
                       }
                     }
                   }

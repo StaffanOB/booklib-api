@@ -41,7 +41,7 @@ def get_user_reviews(user_id):
 @handle_db_errors
 def create_review():
     """Create a new review (requires authentication)"""
-    current_user_id = get_jwt_identity()
+    current_user_id = int(get_jwt_identity())
     data = request.get_json()
     
     # Validate required fields
@@ -83,7 +83,7 @@ def create_review():
 @handle_db_errors
 def update_review(review_id):
     """Update an existing review (only by the review owner)"""
-    current_user_id = get_jwt_identity()
+    current_user_id = int(get_jwt_identity())
     review = Review.query.get_or_404(review_id)
     
     # Check if current user owns this review
@@ -111,7 +111,7 @@ def update_review(review_id):
 @handle_db_errors
 def delete_review(review_id):
     """Delete a review (only by the review owner)"""
-    current_user_id = get_jwt_identity()
+    current_user_id = int(get_jwt_identity())
     review = Review.query.get_or_404(review_id)
     
     # Check if current user owns this review
