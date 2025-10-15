@@ -1361,3 +1361,27 @@ FROM books]
 2025-10-15 21:49:22,443 INFO werkzeug  * Restarting with stat
 2025-10-15 21:49:22,679 WARNING werkzeug  * Debugger is active!
 2025-10-15 21:49:22,680 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 21:53:14,175 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:53:14] "GET /books/1/full HTTP/1.1" 200 -
+2025-10-15 21:53:50,301 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:53:50] "[31m[1mPOST /reviews HTTP/1.1[0m" 401 -
+2025-10-15 21:53:57,563 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:53:57] "POST /users/login HTTP/1.1" 200 -
+2025-10-15 21:54:02,791 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:54:02] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2025-10-15 21:54:34,524 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:54:34] "[31m[1mPUT /reviews/1 HTTP/1.1[0m" 403 -
+2025-10-15 21:56:40,608 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:56:40] "[31m[1mPUT /reviews/1 HTTP/1.1[0m" 403 -
+2025-10-15 21:57:19,919 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/routes/reviews.py', reloading
+2025-10-15 21:57:20,160 INFO werkzeug  * Restarting with stat
+2025-10-15 21:57:20,498 WARNING werkzeug  * Debugger is active!
+2025-10-15 21:57:20,503 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 21:57:27,528 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/routes/reviews.py', reloading
+2025-10-15 21:57:27,679 INFO werkzeug  * Restarting with stat
+2025-10-15 21:57:27,913 WARNING werkzeug  * Debugger is active!
+2025-10-15 21:57:27,915 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 21:57:35,941 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/routes/reviews.py', reloading
+2025-10-15 21:57:35,992 INFO werkzeug  * Restarting with stat
+2025-10-15 21:57:36,230 WARNING werkzeug  * Debugger is active!
+2025-10-15 21:57:36,232 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 21:58:16,339 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/routes/reviews.py', reloading
+2025-10-15 21:58:16,392 INFO werkzeug  * Restarting with stat
+2025-10-15 21:58:16,625 WARNING werkzeug  * Debugger is active!
+2025-10-15 21:58:16,627 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 21:58:25,886 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:58:25] "PUT /reviews/1 HTTP/1.1" 200 -
+2025-10-15 21:58:32,727 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:58:32] "GET /reviews/1 HTTP/1.1" 200 -
