@@ -1121,3 +1121,151 @@ FROM books]
 2025-10-08 22:23:14,828 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:23:14] "[33mGET /api/books HTTP/1.1[0m" 404 -
 2025-10-08 22:23:14,829 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:23:14] "[33mGET /api/books HTTP/1.1[0m" 404 -
 2025-10-08 22:23:36,698 INFO werkzeug 127.0.0.1 - - [08/Oct/2025 22:23:36] "[33mOPTIONS /api/books HTTP/1.1[0m" 404 -
+2025-10-15 15:37:32,572 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-15 15:37:32,573 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-15 15:37:32,573 INFO werkzeug  * Restarting with stat
+2025-10-15 15:37:32,789 WARNING werkzeug  * Debugger is active!
+2025-10-15 15:37:32,801 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 15:37:51,558 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 15:37:51] "[31m[1mPOST /books HTTP/1.1[0m" 401 -
+2025-10-15 15:37:57,177 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 15:37:57] "[35m[1mPOST /users/login HTTP/1.1[0m" 500 -
+2025-10-15 15:38:03,179 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 15:38:03] "[35m[1mPOST /users/register HTTP/1.1[0m" 500 -
+2025-10-15 15:45:32,637 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-15 15:45:32,637 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-15 15:45:37,222 WARNING app.db_utils Database connection check failed: (psycopg2.OperationalError) connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  database "booklib_dev" does not exist
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-15 15:45:37,223 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 15:45:37] "GET /health HTTP/1.1" 200 -
+2025-10-15 15:48:15,319 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-15 15:48:15,319 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-15 15:48:44,521 WARNING app.db_utils Database connection check failed: (psycopg2.OperationalError) connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  database "booklib_dev" does not exist
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-15 15:48:44,521 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 15:48:44] "GET /health HTTP/1.1" 200 -
+2025-10-15 15:49:14,930 WARNING app.db_utils Database connection check failed: (psycopg2.OperationalError) connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  database "booklib_dev" does not exist
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-15 15:49:14,930 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 15:49:14] "GET /health HTTP/1.1" 200 -
+2025-10-15 15:57:27,859 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-15 15:57:27,860 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-15 15:57:34,205 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 15:57:34] "GET /health HTTP/1.1" 200 -
+2025-10-15 15:58:09,561 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 15:58:09] "[31m[1mGET /users HTTP/1.1[0m" 401 -
+2025-10-15 15:58:13,722 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 15:58:13] "[35m[1mPOST /users/register HTTP/1.1[0m" 201 -
+2025-10-15 15:58:17,838 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 15:58:17] "POST /users/login HTTP/1.1" 200 -
+2025-10-15 15:58:22,590 ERROR app.db_utils Database error: (psycopg2.errors.UndefinedColumn) column books.publish_year does not exist
+LINE 1: ...books.publication_date AS books_publication_date, books.publ...
+                                                             ^
+
+[SQL: SELECT books.id AS books_id, books.title AS books_title, books.isbn AS books_isbn, books.description AS books_description, books.publication_date AS books_publication_date, books.publish_year AS books_publish_year, books.series AS books_series, books.cover_url AS books_cover_url, books.page_count AS books_page_count, books.language AS books_language, books.created_at AS books_created_at, books.updated_at AS books_updated_at 
+FROM books]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-15 15:58:22,591 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 15:58:22] "[35m[1mGET /books HTTP/1.1[0m" 503 -
+2025-10-15 16:04:39,907 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-15 16:04:39,907 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-15 16:04:39,908 INFO werkzeug  * Restarting with stat
+2025-10-15 16:04:40,123 WARNING werkzeug  * Debugger is active!
+2025-10-15 16:04:40,133 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 16:04:47,864 ERROR app.db_utils Database error: (psycopg2.errors.UndefinedColumn) column books.publish_year does not exist
+LINE 1: ...books.publication_date AS books_publication_date, books.publ...
+                                                             ^
+
+[SQL: SELECT books.id AS books_id, books.title AS books_title, books.isbn AS books_isbn, books.description AS books_description, books.publication_date AS books_publication_date, books.publish_year AS books_publish_year, books.series AS books_series, books.cover_url AS books_cover_url, books.page_count AS books_page_count, books.language AS books_language, books.created_at AS books_created_at, books.updated_at AS books_updated_at 
+FROM books]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-15 16:04:47,864 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:04:47] "[35m[1mGET /books HTTP/1.1[0m" 503 -
+2025-10-15 16:09:21,790 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:09:21] "GET /health HTTP/1.1" 200 -
+2025-10-15 16:09:34,637 ERROR app.db_utils Database error: (psycopg2.errors.UndefinedColumn) column books.publish_year does not exist
+LINE 1: ...books.publication_date AS books_publication_date, books.publ...
+                                                             ^
+
+[SQL: SELECT books.id AS books_id, books.title AS books_title, books.isbn AS books_isbn, books.description AS books_description, books.publication_date AS books_publication_date, books.publish_year AS books_publish_year, books.series AS books_series, books.cover_url AS books_cover_url, books.page_count AS books_page_count, books.language AS books_language, books.created_at AS books_created_at, books.updated_at AS books_updated_at 
+FROM books]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-15 16:09:34,637 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:09:34] "[35m[1mGET /books HTTP/1.1[0m" 503 -
+2025-10-15 16:10:08,230 ERROR app.db_utils Database error: (psycopg2.errors.UndefinedColumn) column books.publish_year does not exist
+LINE 1: ...books.publication_date AS books_publication_date, books.publ...
+                                                             ^
+
+[SQL: SELECT books.id AS books_id, books.title AS books_title, books.isbn AS books_isbn, books.description AS books_description, books.publication_date AS books_publication_date, books.publish_year AS books_publish_year, books.series AS books_series, books.cover_url AS books_cover_url, books.page_count AS books_page_count, books.language AS books_language, books.created_at AS books_created_at, books.updated_at AS books_updated_at 
+FROM books]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-15 16:10:08,231 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:10:08] "[35m[1mGET /books HTTP/1.1[0m" 503 -
+2025-10-15 16:10:23,822 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-15 16:10:23,822 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-15 16:10:23,822 INFO werkzeug  * Restarting with stat
+2025-10-15 16:10:24,038 WARNING werkzeug  * Debugger is active!
+2025-10-15 16:10:24,039 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 16:10:30,182 ERROR app.db_utils Database error: (psycopg2.errors.UndefinedColumn) column books.publish_year does not exist
+LINE 1: ...books.publication_date AS books_publication_date, books.publ...
+                                                             ^
+
+[SQL: SELECT books.id AS books_id, books.title AS books_title, books.isbn AS books_isbn, books.description AS books_description, books.publication_date AS books_publication_date, books.publish_year AS books_publish_year, books.series AS books_series, books.cover_url AS books_cover_url, books.page_count AS books_page_count, books.language AS books_language, books.created_at AS books_created_at, books.updated_at AS books_updated_at 
+FROM books]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-15 16:10:30,183 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:10:30] "[35m[1mGET /books HTTP/1.1[0m" 503 -
+2025-10-15 16:11:47,296 ERROR app.db_utils Database error: (psycopg2.errors.UndefinedColumn) column books.series does not exist
+LINE 1: ...n_date, books.publish_year AS books_publish_year, books.seri...
+                                                             ^
+
+[SQL: SELECT books.id AS books_id, books.title AS books_title, books.isbn AS books_isbn, books.description AS books_description, books.publication_date AS books_publication_date, books.publish_year AS books_publish_year, books.series AS books_series, books.cover_url AS books_cover_url, books.page_count AS books_page_count, books.language AS books_language, books.created_at AS books_created_at, books.updated_at AS books_updated_at 
+FROM books]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-15 16:11:47,297 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:11:47] "[35m[1mGET /books HTTP/1.1[0m" 503 -
+2025-10-15 16:12:00,958 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-15 16:12:00,958 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-15 16:12:00,958 INFO werkzeug  * Restarting with stat
+2025-10-15 16:12:01,178 WARNING werkzeug  * Debugger is active!
+2025-10-15 16:12:01,180 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 16:12:07,063 ERROR app.db_utils Database error: (psycopg2.errors.UndefinedColumn) column books.series does not exist
+LINE 1: ...n_date, books.publish_year AS books_publish_year, books.seri...
+                                                             ^
+
+[SQL: SELECT books.id AS books_id, books.title AS books_title, books.isbn AS books_isbn, books.description AS books_description, books.publication_date AS books_publication_date, books.publish_year AS books_publish_year, books.series AS books_series, books.cover_url AS books_cover_url, books.page_count AS books_page_count, books.language AS books_language, books.created_at AS books_created_at, books.updated_at AS books_updated_at 
+FROM books]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-15 16:12:07,064 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:12:07] "[35m[1mGET /books HTTP/1.1[0m" 503 -
+2025-10-15 16:13:26,651 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:13:26] "GET /books HTTP/1.1" 200 -
+2025-10-15 16:35:09,468 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/migrations/env.py', reloading
+2025-10-15 16:35:09,509 INFO werkzeug  * Restarting with stat
+2025-10-15 16:35:09,721 WARNING werkzeug  * Debugger is active!
+2025-10-15 16:35:09,723 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 16:36:04,857 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/migrations/env.py', reloading
+2025-10-15 16:36:04,899 INFO werkzeug  * Restarting with stat
+2025-10-15 16:36:05,116 WARNING werkzeug  * Debugger is active!
+2025-10-15 16:36:05,117 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 16:36:20,157 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/migrations/env.py', reloading
+2025-10-15 16:36:20,199 INFO werkzeug  * Restarting with stat
+2025-10-15 16:36:20,413 WARNING werkzeug  * Debugger is active!
+2025-10-15 16:36:20,415 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 16:38:30,149 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-15 16:38:30,149 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-15 16:38:30,149 INFO werkzeug  * Restarting with stat
+2025-10-15 16:38:30,360 WARNING werkzeug  * Debugger is active!
+2025-10-15 16:38:30,362 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 16:43:28,115 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:43:28] "POST /users/login HTTP/1.1" 200 -
+2025-10-15 16:43:31,245 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:43:31] "[33mGET /books/2 HTTP/1.1[0m" 404 -
+2025-10-15 16:43:37,683 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:43:37] "GET /books HTTP/1.1" 200 -
+2025-10-15 16:43:43,730 DEBUG urllib3.connectionpool Starting new HTTPS connection (1): www.googleapis.com:443
+2025-10-15 16:43:44,732 DEBUG urllib3.connectionpool https://www.googleapis.com:443 "GET /books/v1/volumes?q=isbn:0786208457 HTTP/1.1" 200 None
+2025-10-15 16:43:44,732 INFO root Parsed book info from Google Books: title=The Regulators, authors=['Richard Bachman'], publish_year=1997-11, cover_url=http://books.google.com/books/content?id=BDaZ867cjLkC&printsec=frontcover&img=1&zoom=1&source=gbs_api
+2025-10-15 16:43:44,732 DEBUG root Enriched data from plugin GoogleBooksPlugin for ISBN 0786208457: {'title': 'The Regulators', 'authors': ['Richard Bachman'], 'description': 'Mayhem descends on the formerly quiet Poplar Street, leaving the survivors in another world of terrible possibilities and terrifying answers.--', 'series': None, 'publish_year': '1997-11', 'genres': ['Fiction'], 'cover_url': 'http://books.google.com/books/content?id=BDaZ867cjLkC&printsec=frontcover&img=1&zoom=1&source=gbs_api'}
+2025-10-15 16:43:44,765 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:43:44] "[35m[1mPOST /books HTTP/1.1[0m" 201 -
+2025-10-15 16:43:47,916 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:43:47] "GET /books HTTP/1.1" 200 -
+2025-10-15 16:43:55,088 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:43:55] "GET /books/1 HTTP/1.1" 200 -

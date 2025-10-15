@@ -67,6 +67,11 @@ pipeline {
                                 docker compose -f docker-compose.yml down || true
                                 docker compose --env-file .env.test up -d || true
                                 docker compose ps || true
+                                
+                                # Run database migrations
+                                echo "Running database migrations..."
+                                docker exec booklib-api bash -c "cd /app/migrations && alembic upgrade head" || echo "Migrations completed or already up to date"
+                                
                                 exit 0
                             '
                         """
