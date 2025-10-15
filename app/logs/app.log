@@ -1349,3 +1349,5 @@ FROM books]
 2025-10-15 21:12:20,660 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:12:20] "GET /users HTTP/1.1" 200 -
 2025-10-15 21:12:30,095 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:12:30] "[31m[1mPUT /reviews/1 HTTP/1.1[0m" 403 -
 2025-10-15 21:12:33,613 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:12:33] "GET /reviews/1 HTTP/1.1" 200 -
+2025-10-15 21:59:48,182 WARNING werkzeug  * Debugger is active!
+2025-10-15 21:59:48,185 INFO werkzeug  * Debugger PIN: 760-350-166
