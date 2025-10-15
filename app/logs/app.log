@@ -1349,3 +1349,15 @@ FROM books]
 2025-10-15 21:12:20,660 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:12:20] "GET /users HTTP/1.1" 200 -
 2025-10-15 21:12:30,095 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:12:30] "[31m[1mPUT /reviews/1 HTTP/1.1[0m" 403 -
 2025-10-15 21:12:33,613 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:12:33] "GET /reviews/1 HTTP/1.1" 200 -
+2025-10-15 21:47:31,327 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/routes/books.py', reloading
+2025-10-15 21:47:31,437 INFO werkzeug  * Restarting with stat
+2025-10-15 21:47:31,789 WARNING werkzeug  * Debugger is active!
+2025-10-15 21:47:31,792 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 21:47:43,835 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/routes/books.py', reloading
+2025-10-15 21:47:43,895 INFO werkzeug  * Restarting with stat
+2025-10-15 21:47:44,139 WARNING werkzeug  * Debugger is active!
+2025-10-15 21:47:44,141 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 21:49:22,391 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/routes/books.py', reloading
+2025-10-15 21:49:22,443 INFO werkzeug  * Restarting with stat
+2025-10-15 21:49:22,679 WARNING werkzeug  * Debugger is active!
+2025-10-15 21:49:22,680 INFO werkzeug  * Debugger PIN: 760-350-166
