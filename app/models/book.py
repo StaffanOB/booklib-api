@@ -27,4 +27,5 @@ class Book(db.Model):
     authors = db.relationship("Author", secondary="book_authors", back_populates="books")
     comments = db.relationship("Comment", back_populates="book", lazy=True)
     ratings = db.relationship("Rating", back_populates="book", lazy=True)
+    reviews = db.relationship("Review", back_populates="book", lazy=True)
     tags = db.relationship("Tag", secondary="book_tags", back_populates="books")

@@ -15,3 +15,4 @@ class User(db.Model):
     # Relationships with explicit foreign keys
     comments = db.relationship("Comment", back_populates="user", lazy=True)
     ratings = db.relationship("Rating", back_populates="user", lazy=True)
+    reviews = db.relationship("Review", back_populates="user", lazy=True)

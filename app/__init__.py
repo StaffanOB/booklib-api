@@ -21,12 +21,13 @@ def create_app():
         from app.db_utils import get_health_status
         return get_health_status()
     
-    from app.routes import users_bp, books_bp, tags_bp, comments_bp, ratings_bp, plugins_bp, protected_bp
+    from app.routes import users_bp, books_bp, tags_bp, comments_bp, ratings_bp, reviews_bp, plugins_bp, protected_bp
     app.register_blueprint(users_bp)
     app.register_blueprint(books_bp) 
     app.register_blueprint(tags_bp)
     app.register_blueprint(comments_bp)
     app.register_blueprint(ratings_bp)
+    app.register_blueprint(reviews_bp)
     app.register_blueprint(plugins_bp)
     app.register_blueprint(protected_bp)
     from app.swagger import swaggerui_blueprint, docs

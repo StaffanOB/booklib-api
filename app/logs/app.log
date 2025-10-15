@@ -1269,3 +1269,83 @@ FROM books]
 2025-10-15 16:43:44,765 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:43:44] "[35m[1mPOST /books HTTP/1.1[0m" 201 -
 2025-10-15 16:43:47,916 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:43:47] "GET /books HTTP/1.1" 200 -
 2025-10-15 16:43:55,088 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 16:43:55] "GET /books/1 HTTP/1.1" 200 -
+2025-10-15 17:18:04,371 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 17:18:04] "GET /health HTTP/1.1" 200 -
+2025-10-15 18:29:27,925 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-15 18:29:27,925 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-15 18:29:27,925 INFO werkzeug  * Restarting with stat
+2025-10-15 18:29:28,145 WARNING werkzeug  * Debugger is active!
+2025-10-15 18:29:28,155 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 18:29:35,560 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 18:29:35] "GET /books HTTP/1.1" 200 -
+2025-10-15 18:29:43,912 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 18:29:43] "[31m[1mPOST /users/login HTTP/1.1[0m" 401 -
+2025-10-15 18:29:47,319 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 18:29:47] "[35m[1mPOST /users/register HTTP/1.1[0m" 201 -
+2025-10-15 18:29:50,249 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 18:29:50] "POST /users/login HTTP/1.1" 200 -
+2025-10-15 18:29:56,371 DEBUG urllib3.connectionpool Starting new HTTPS connection (1): www.googleapis.com:443
+2025-10-15 18:29:56,792 DEBUG urllib3.connectionpool https://www.googleapis.com:443 "GET /books/v1/volumes?q=isbn:0786208457 HTTP/1.1" 200 None
+2025-10-15 18:29:56,793 INFO root Parsed book info from Google Books: title=The Regulators, authors=['Richard Bachman'], publish_year=1997-11, cover_url=http://books.google.com/books/content?id=BDaZ867cjLkC&printsec=frontcover&img=1&zoom=1&source=gbs_api
+2025-10-15 18:29:56,793 DEBUG root Enriched data from plugin GoogleBooksPlugin for ISBN 0786208457: {'title': 'The Regulators', 'authors': ['Richard Bachman'], 'description': 'Mayhem descends on the formerly quiet Poplar Street, leaving the survivors in another world of terrible possibilities and terrifying answers.--', 'series': None, 'publish_year': '1997-11', 'genres': ['Fiction'], 'cover_url': 'http://books.google.com/books/content?id=BDaZ867cjLkC&printsec=frontcover&img=1&zoom=1&source=gbs_api'}
+2025-10-15 18:29:56,818 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 18:29:56] "[35m[1mPOST /books HTTP/1.1[0m" 201 -
+2025-10-15 18:30:01,421 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 18:30:01] "GET /books HTTP/1.1" 200 -
+2025-10-15 20:22:51,467 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/models/__init__.py', reloading
+2025-10-15 20:22:51,521 INFO werkzeug  * Restarting with stat
+2025-10-15 20:22:51,746 WARNING werkzeug  * Debugger is active!
+2025-10-15 20:22:51,749 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 20:24:43,038 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/models/book.py', reloading
+2025-10-15 20:24:43,103 INFO werkzeug  * Restarting with stat
+2025-10-15 20:24:43,352 WARNING werkzeug  * Debugger is active!
+2025-10-15 20:24:43,354 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 20:26:49,691 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/models/user.py', reloading
+2025-10-15 20:26:49,823 INFO werkzeug  * Restarting with stat
+2025-10-15 20:26:50,148 WARNING werkzeug  * Debugger is active!
+2025-10-15 20:26:50,150 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 20:30:11,669 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/__init__.py', reloading
+2025-10-15 20:30:11,725 INFO werkzeug  * Restarting with stat
+2025-10-15 20:36:53,044 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.93:5000
+2025-10-15 20:36:53,044 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-10-15 20:36:53,044 INFO werkzeug  * Restarting with stat
+2025-10-15 20:36:53,277 WARNING werkzeug  * Debugger is active!
+2025-10-15 20:36:53,279 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 20:39:08,623 INFO werkzeug  * Detected change in '/home/staffan/develop/projekts/booklib/booklib-api/app/models/book.py', reloading
+2025-10-15 20:39:08,713 INFO werkzeug  * Restarting with stat
+2025-10-15 20:39:08,950 WARNING werkzeug  * Debugger is active!
+2025-10-15 20:39:08,953 INFO werkzeug  * Debugger PIN: 760-350-166
+2025-10-15 20:50:11,810 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:50:11] "[32mGET /docs HTTP/1.1[0m" 308 -
+2025-10-15 20:50:11,816 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:50:11] "GET /docs/ HTTP/1.1" 200 -
+2025-10-15 20:50:11,837 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:50:11] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-10-15 20:50:11,850 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:50:11] "GET /docs/swagger-ui-bundle.js HTTP/1.1" 200 -
+2025-10-15 20:50:11,850 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:50:11] "GET /docs/index.css HTTP/1.1" 200 -
+2025-10-15 20:50:11,851 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:50:11] "GET /docs/swagger-ui-standalone-preset.js HTTP/1.1" 200 -
+2025-10-15 20:50:11,851 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:50:11] "GET /docs/swagger-ui.css HTTP/1.1" 200 -
+2025-10-15 20:50:11,880 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:50:11] "GET /docs/swagger-ui.css.map HTTP/1.1" 200 -
+2025-10-15 20:50:12,067 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:50:12] "GET /static/swagger.json HTTP/1.1" 200 -
+2025-10-15 20:50:12,084 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:50:12] "GET /docs/favicon-32x32.png HTTP/1.1" 200 -
+2025-10-15 20:58:26,297 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:58:26] "[36mGET /docs/swagger-ui.css HTTP/1.1[0m" 304 -
+2025-10-15 20:58:26,298 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:58:26] "[36mGET /docs/index.css HTTP/1.1[0m" 304 -
+2025-10-15 20:58:26,301 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:58:26] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-10-15 20:58:26,317 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:58:26] "GET /docs/swagger-ui.css.map HTTP/1.1" 200 -
+2025-10-15 20:59:00,546 ERROR app.db_utils Unexpected error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-10-15 20:59:00,547 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:59:00] "[35m[1mGET /reviews/2 HTTP/1.1[0m" 500 -
+2025-10-15 20:59:38,423 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 20:59:38] "GET /reviews/book/1 HTTP/1.1" 200 -
+2025-10-15 21:00:03,912 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:00:03] "GET /reviews/user/1 HTTP/1.1" 200 -
+2025-10-15 21:00:18,359 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:00:18] "GET /reviews HTTP/1.1" 200 -
+2025-10-15 21:03:57,442 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:03:57] "POST /users/login HTTP/1.1" 200 -
+2025-10-15 21:04:50,393 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:04:50] "GET /books HTTP/1.1" 200 -
+2025-10-15 21:07:57,606 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:07:57] "[31m[1mPUT /reviews/1 HTTP/1.1[0m" 401 -
+2025-10-15 21:08:08,234 ERROR app.db_utils Unexpected error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-10-15 21:08:08,235 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:08:08] "[35m[1mPUT /reviews/1 HTTP/1.1[0m" 500 -
+2025-10-15 21:10:33,540 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:10:33] "[35m[1mPOST /reviews HTTP/1.1[0m" 201 -
+2025-10-15 21:10:59,253 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:10:59] "GET /books/1 HTTP/1.1" 200 -
+2025-10-15 21:11:09,542 ERROR app.db_utils Unexpected error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-10-15 21:11:09,542 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:11:09] "[35m[1mGET /books/2/full HTTP/1.1[0m" 500 -
+2025-10-15 21:11:18,768 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:11:18] "GET /books/1/full HTTP/1.1" 200 -
+2025-10-15 21:11:30,930 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:11:30] "GET /reviews/book/1 HTTP/1.1" 200 -
+2025-10-15 21:11:39,342 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:11:39] "GET /reviews/user/1 HTTP/1.1" 200 -
+2025-10-15 21:11:58,280 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:11:58] "[31m[1mPUT /reviews/1 HTTP/1.1[0m" 403 -
+2025-10-15 21:12:20,660 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:12:20] "GET /users HTTP/1.1" 200 -
+2025-10-15 21:12:30,095 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:12:30] "[31m[1mPUT /reviews/1 HTTP/1.1[0m" 403 -
+2025-10-15 21:12:33,613 INFO werkzeug 127.0.0.1 - - [15/Oct/2025 21:12:33] "GET /reviews/1 HTTP/1.1" 200 -
