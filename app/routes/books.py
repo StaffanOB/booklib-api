@@ -285,6 +285,10 @@ def update_book(id):
             book.publish_year = None
     if 'series' in data:
         book.series = data['series']
+    if 'cover_url' in data:
+        old_cover_url = book.cover_url
+        book.cover_url = data['cover_url']
+        logging.debug(f'Updated cover_url for book {book.id}: {old_cover_url} -> {book.cover_url}')
     db.session.commit()
     return jsonify({'msg': 'Book updated'}), 200
 

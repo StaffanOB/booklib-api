@@ -84,4 +84,3 @@ secrets.json
 # App specific
 /app/plugins/__pycache__/
 /app/plugins/openlibrary_cache/
-/app/logs/
