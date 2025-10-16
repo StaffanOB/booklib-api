@@ -38,7 +38,8 @@ def get_books():
             'authors': [a.name for a in b.authors],
             'description': b.description,
             'publish_year': b.publish_year,
-            'series': b.series
+            'series': b.series,
+            'cover_url': b.cover_url
         } for b in books
     ]), 200
 
