@@ -214,9 +214,12 @@
                   "type": "object",
                   "properties": {
                     "title": {"type": "string", "description": "Book title (auto-filled if ISBN provided)"},
+                    "author": {"type": ["string", "array"], "description": "Author name(s)"},
+                    "description": {"type": "string", "description": "Book description"},
                     "isbn": {"type": "string", "description": "ISBN to fetch book info from plugin"},
                     "publish_year": {"type": ["integer", "string", "null"], "description": "Publish year (auto-filled if ISBN provided)"},
                     "series": {"type": ["string", "null"], "description": "Book series (auto-filled if ISBN provided)"},
+                    "cover_url": {"type": ["string", "null"], "description": "URL to book cover image"},
                     "tags": {"type": "array", "items": {"type": "string"}, "description": "Genres/subjects (auto-filled if ISBN provided)"},
                     "plugin": {"type": "string", "description": "Plugin to use for enrichment (GoogleBooksPlugin, OpenLibraryPlugin)"}
                   },
